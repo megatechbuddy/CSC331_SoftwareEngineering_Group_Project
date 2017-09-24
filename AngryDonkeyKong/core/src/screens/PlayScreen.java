@@ -13,6 +13,7 @@ public class PlayScreen implements Screen{
 	
 	public PlayScreen(AngryDonkeyKongLibGDX game) {
 		this.game = game;
+		//This uses the image that Chuyang made.
 		img = new Texture("TitlePicture.jpg");
 	}
 	
