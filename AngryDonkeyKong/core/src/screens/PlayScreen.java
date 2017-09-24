@@ -23,7 +23,10 @@ public class PlayScreen implements Screen{
 		//This uses the image that Chuyang made.
 		img = new Texture("TitlePicture.jpg");
 		gamecam = new OrthographicCamera();
-		gamePort = new FitViewport(908, 590, gamecam);
+		gamePort = new FitViewport(902, 590, gamecam);
+		//other options
+		//gamePort = new ScreenViewport(gamecam);
+		//gamePort = new StretchViewport(902, 590, gamecam);
 	}
 	
 	@Override
@@ -34,11 +37,11 @@ public class PlayScreen implements Screen{
 
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		game.batch.setProjectionMatrix(gamecam.combined);
 		game.batch.begin();
-		game.batch.draw(img, 0, 0);
+		game.batch.draw(img, -451, -295);
 		game.batch.end();
 	}
 
