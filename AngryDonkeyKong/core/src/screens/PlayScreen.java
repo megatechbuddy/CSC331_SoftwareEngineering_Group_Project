@@ -49,7 +49,7 @@ public class PlayScreen implements Screen{
 		hud = new Hud(game.batch);
 		
 		mapLoader = new TmxMapLoader();
-		map = mapLoader.load("level1.tmx");
+		map = mapLoader.load("marioMapV3.tmx");
 		renderer = new OrthogonalTiledMapRenderer(map);
 		gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight()/2, 0);
 		
