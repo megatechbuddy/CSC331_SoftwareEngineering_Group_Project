@@ -8,8 +8,8 @@ import screens.PlayScreen;
 
 public class AngryDonkeyKongLibGDX extends Game {
 	public SpriteBatch batch;
-	public static final int V_WIDTH = 400;
-	public static final int V_HEIGHT = 208;
+	public static final int V_WIDTH = 608;
+	public static final int V_HEIGHT = 800;
 	
 	@Override
 	public void create () {
