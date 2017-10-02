@@ -10,6 +10,7 @@ public class AngryDonkeyKongLibGDX extends Game {
 	public SpriteBatch batch;
 	public static final int V_WIDTH = 608;
 	public static final int V_HEIGHT = 800;
+	public static final float PPM = 10;
 	
 	@Override
 	public void create () {
