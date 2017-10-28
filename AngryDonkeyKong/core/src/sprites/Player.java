@@ -12,14 +12,20 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import screens.PlayScreen;
+
 public class Player extends Sprite{
 	public World world;
 	public Body b2body;
+	private TextureRegion donkeyStand;
 	
-	public Player(World world) {
+	public Player(World world, PlayScreen screen) {
+		super(screen.getAtlas().findRegion("KongFront"));
 		this.world = world;
 		definePlayer();
-		
+		donkeyStand = new TextureRegion(getTexture(),1,1,52,44);
+		setBounds(0, 0, 32/AngryDonkeyKongLibGDX.PPM , 32/AngryDonkeyKongLibGDX.PPM);
+		setRegion(donkeyStand);
 	}
 
 	public void update(float dt)

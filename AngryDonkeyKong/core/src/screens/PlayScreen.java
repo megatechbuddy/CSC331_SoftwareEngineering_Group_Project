@@ -60,6 +60,7 @@ public class PlayScreen implements Screen{
 		
 		//sprites
 		//atlas = new TextureAtlas("ateamman sprite.png");
+		atlas = new TextureAtlas("AngryDonkeyKongSprites.pack");
 		
 		//This uses the image that Chuyang made.
 		
@@ -129,7 +130,7 @@ public class PlayScreen implements Screen{
 		
 
         //create mario in our game world
-        player = new Player(world);
+        player = new Player(world, this);
 	}
 	
 	@Override
@@ -172,10 +173,10 @@ public class PlayScreen implements Screen{
 		
 		renderer.render();
 		
-//		game.batch.setProjectionMatrix(gamecam.combined);
-//		game.batch.begin();
-//		game.batch.draw(img, -451, -295);
-//		game.batch.end();
+		game.batch.setProjectionMatrix(gamecam.combined);
+		game.batch.begin();
+		game.batch.draw(game.batch);
+		game.batch.end();
 	
 		b2dr.render(world, gamecam.combined);
 		
@@ -212,5 +213,11 @@ public class PlayScreen implements Screen{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public TextureAtlas getAtlas() {
+		return atlas;
+	}
+	
+    public Hud getHud(){ return hud; }
 
 }

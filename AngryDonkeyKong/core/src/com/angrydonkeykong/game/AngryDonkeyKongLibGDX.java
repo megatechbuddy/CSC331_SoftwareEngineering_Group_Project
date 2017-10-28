@@ -2,6 +2,7 @@
 package com.angrydonkeykong.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import screens.PlayScreen;
@@ -21,5 +22,17 @@ public class AngryDonkeyKongLibGDX extends Game {
 	@Override
 	public void render () {
 		super.render();
+	}
+
+	public Texture batch() {
+		// TODO Auto-generated method stub
+		return batch();
+	}
+	
+
+	@Override
+	public void dispose() {
+		super.dispose();
+		batch.dispose();
 	}
 }
