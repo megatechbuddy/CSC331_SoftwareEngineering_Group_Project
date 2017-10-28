@@ -32,7 +32,7 @@ public class Hud {
 		worldTimer = 300;
 		timeCount = 0;
 		score = 0;
-		
+   		
 		viewport = new FitViewport(AngryDonkeyKongLibGDX.V_WIDTH, AngryDonkeyKongLibGDX.V_HEIGHT, new OrthographicCamera());
 		stage = new Stage(viewport, sb);
 		
@@ -55,8 +55,6 @@ public class Hud {
 		table.add(levelLabel).expandX();
 		table.add(countDownLabel).expandX();
 		
-		stage.addActor(table);
-		
-		
+		stage.addActor(table);		
 	}
 }

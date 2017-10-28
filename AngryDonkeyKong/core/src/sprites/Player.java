@@ -29,7 +29,7 @@ public class Player extends Sprite{
 	
 	private void definePlayer() {
 		BodyDef bdef = new BodyDef();
-		bdef.position.set(50/AngryDonkeyKongLibGDX.PPM,500/AngryDonkeyKongLibGDX.PPM);
+		bdef.position.set(50/AngryDonkeyKongLibGDX.PPM,50/AngryDonkeyKongLibGDX.PPM);
 		bdef.type = BodyDef.BodyType.DynamicBody;
 		b2body = world.createBody(bdef);
 		
@@ -43,7 +43,9 @@ public class Player extends Sprite{
 		Texture img = new Texture("ateamman sprite.png");
         Sprite sprite = new Sprite(img);
 		PolygonShape shape2 = new PolygonShape();
-        shape2.setAsBox(sprite.getWidth()/32, sprite.getHeight()/32);
+		
+		//changing #64 to a different bigger number makes the main character smaller
+        shape2.setAsBox(sprite.getWidth()/64, sprite.getHeight()/64);
 
         fDef.shape = shape2;
         fDef.density = 1f;
