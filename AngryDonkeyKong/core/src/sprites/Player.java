@@ -1,4 +1,4 @@
-package sprites;
+ package sprites;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,7 +16,7 @@ public class Player extends Sprite{
 	public World world;
 	public Body b2body;
 	
-	public Player(World world) {
+	public Player(World world, PlayScreen screen) {
 		this.world = world;
 		definePlayer();
 		

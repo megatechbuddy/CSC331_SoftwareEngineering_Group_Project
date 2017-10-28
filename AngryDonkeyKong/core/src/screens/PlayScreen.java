@@ -59,7 +59,7 @@ public class PlayScreen implements Screen{
 		this.game = game;
 		
 		//sprites
-		//atlas = new TextureAtlas("ateamman sprite.png");
+		atlas = new TextureAtlas("ateamman sprite.png");
 		
 		//This uses the image that Chuyang made.
 		
@@ -129,7 +129,11 @@ public class PlayScreen implements Screen{
 		
 
         //create mario in our game world
-        player = new Player(world);
+        player = new Player(world, this);
+	}
+	
+	public TextureAtlas getAtlas() {
+		return atlas;
 	}
 	
 	@Override
