@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -26,8 +27,6 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import scenes.Hud;
@@ -59,12 +58,8 @@ public class PlayScreen implements Screen{
 		this.game = game;
 		
 		//sprites
-		//atlas = new TextureAtlas("ateamman sprite.png");
 		atlas = new TextureAtlas("AngryDonkeyKongSprites.pack");
 		
-		//This uses the image that Chuyang made.
-		
-//		img = new Texture("TitlePicture.jpg");
 		
 		gamecam = new OrthographicCamera();
 		gamePort = new FitViewport(AngryDonkeyKongLibGDX.V_WIDTH / AngryDonkeyKongLibGDX.PPM, AngryDonkeyKongLibGDX.V_HEIGHT / AngryDonkeyKongLibGDX.PPM, gamecam);
@@ -175,8 +170,8 @@ public class PlayScreen implements Screen{
 		
 		game.batch.setProjectionMatrix(gamecam.combined);
 		game.batch.begin();
-		game.batch.draw(getAtlas().getTextures().first(),player.getX(),player.getY());
-		//game.batch.draw(getAtlas().getTextures().first(),1,1);
+		game.batch.draw(getAtlas().getTextures().first(), player.getX() - player.getWidth()/4, player.getY() - player.getHeight()/2,player.getWidth(),player.getHeight());
+
 		game.batch.end();
 	
 		b2dr.render(world, gamecam.combined);

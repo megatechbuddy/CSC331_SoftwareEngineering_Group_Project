@@ -30,7 +30,7 @@ public class Player extends Sprite{
 
 	public void update(float dt)
 	{
-		setPosition(b2body.getPosition().x - getWidth()/2, b2body.getPosition().y -getHeight()/2);
+		setPosition(b2body.getPosition().x, b2body.getPosition().y);
 	}
 	
 	private void definePlayer() {
@@ -40,18 +40,12 @@ public class Player extends Sprite{
 		b2body = world.createBody(bdef);
 		
 		FixtureDef fDef = new FixtureDef();
-//		CircleShape shape = new CircleShape();
-//		shape.setRadius(10/AngryDonkeyKongLibGDX.PPM);
-//		fDef.shape = shape;
-//
-//		b2body.createFixture(fDef);
 		
-		Texture img = new Texture("ateamman sprite.png");
+		Texture img = new Texture("AngryDonkeyKongSprites.png"); //string is irrelevant
         Sprite sprite = new Sprite(img);
 		PolygonShape shape2 = new PolygonShape();
 		
-		//changing #64 to a different bigger number makes the main character smaller
-        shape2.setAsBox(sprite.getWidth()/64, sprite.getHeight()/64);
+        shape2.setAsBox(1,1);
 
         fDef.shape = shape2;
         fDef.density = 1f;
