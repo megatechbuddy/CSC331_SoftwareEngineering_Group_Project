@@ -24,13 +24,13 @@ public class Player extends Sprite{
 		this.world = world;
 		definePlayer();
 		donkeyStand = new TextureRegion(getTexture(),1,1,52,44);
-		setBounds(0, 0, 32/AngryDonkeyKongLibGDX.PPM , 32/AngryDonkeyKongLibGDX.PPM);
+		setBounds(0, 0, 16/AngryDonkeyKongLibGDX.PPM , 16/AngryDonkeyKongLibGDX.PPM);
 		setRegion(donkeyStand);
 	}
 
 	public void update(float dt)
 	{
-		setPosition(b2body.getPosition().x, b2body.getPosition().y);
+		setPosition(b2body.getPosition().x - getWidth()/2, b2body.getPosition().y - getHeight()/2);
 	}
 	
 	private void definePlayer() {
@@ -45,7 +45,7 @@ public class Player extends Sprite{
         Sprite sprite = new Sprite(img);
 		PolygonShape shape2 = new PolygonShape();
 		
-        shape2.setAsBox(1,1);
+        shape2.setAsBox(8/AngryDonkeyKongLibGDX.PPM,8/AngryDonkeyKongLibGDX.PPM);
 
         fDef.shape = shape2;
         fDef.density = 1f;
