@@ -139,13 +139,13 @@ public class PlayScreen implements Screen{
 		//	gamecam.position.x += 100 * dt;
 
 		if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
-			player.b2body.applyLinearImpulse(new Vector2(0,4f), player.b2body.getWorldCenter(), true);
+			player.b2body.applyLinearImpulse(new Vector2(0,8f), player.b2body.getWorldCenter(), true);
 		if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT))
 			player.b2body.applyLinearImpulse(new Vector2(1f,0), player.b2body.getWorldCenter(), true);
 		if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT))
 			player.b2body.applyLinearImpulse(new Vector2(-1f,0), player.b2body.getWorldCenter(), true);
 		if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN))
-			player.b2body.applyLinearImpulse(new Vector2(0,-4f), player.b2body.getWorldCenter(), true);
+			player.b2body.applyLinearImpulse(new Vector2(0,-8f), player.b2body.getWorldCenter(), true);
 		
 	}
 
