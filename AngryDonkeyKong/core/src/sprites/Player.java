@@ -18,6 +18,7 @@ public class Player extends Sprite{
 	public World world;
 	public Body b2body;
 	private TextureRegion donkeyStand;
+	public static int speed = 20;
 	
 	public Player(World world, PlayScreen screen) {
 		super(screen.getAtlas().findRegion("KongFront"));

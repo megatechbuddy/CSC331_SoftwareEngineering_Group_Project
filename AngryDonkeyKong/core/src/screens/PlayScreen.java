@@ -54,6 +54,10 @@ public class PlayScreen implements Screen{
 	private Player player;
 	private TextureAtlas atlas;
 	
+	//Movement
+	private float player_x_velocity = 0;
+	private float player_y_velocity = 0;
+	
 	public PlayScreen(AngryDonkeyKongLibGDX game) {
 		this.game = game;
 		
@@ -137,15 +141,23 @@ public class PlayScreen implements Screen{
 	public void handleInput (float  dt) {
 		//if(Gdx.input.isTouched())
 		//	gamecam.position.x += 100 * dt;
-
-		if(Gdx.input.isKeyJustPressed(Input.Keys.UP))
-			player.b2body.applyLinearImpulse(new Vector2(0,4f), player.b2body.getWorldCenter(), true);
-		if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT))
-			player.b2body.applyLinearImpulse(new Vector2(1f,0), player.b2body.getWorldCenter(), true);
-		if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT))
-			player.b2body.applyLinearImpulse(new Vector2(-1f,0), player.b2body.getWorldCenter(), true);
-		if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN))
-			player.b2body.applyLinearImpulse(new Vector2(0,-4f), player.b2body.getWorldCenter(), true);
+		
+//		private void jump() { 
+//			//Jump code goes here
+//		}
+		
+		player_x_velocity = 0;
+		if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+			//player.b2body.applyLinearImpulse(new Vector2(0,4f), player.b2body.getWorldCenter(), true);
+			//jump();
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+			//player.b2body.applyLinearImpulse(new Vector2(1f,0), player.b2body.getWorldCenter(), true);
+			player_x_velocity += 1;}
+		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+			//player.b2body.applyLinearImpulse(new Vector2(-1f,0), player.b2body.getWorldCenter(), true);
+			player_x_velocity -= 1;}
+		player.b2body.setLinearVelocity(player_x_velocity*Player.speed, player_y_velocity*Player.speed);
 		
 	}
 
