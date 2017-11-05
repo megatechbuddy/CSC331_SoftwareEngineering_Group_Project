@@ -58,7 +58,7 @@ public class PlayScreen implements Screen{
 		this.game = game;
 		
 		//sprites
-		atlas = new TextureAtlas("AngryDonkeyKongSprites.pack");
+		atlas = new TextureAtlas("ChuyangRunning.pack");
 		
 		
 		gamecam = new OrthographicCamera();
