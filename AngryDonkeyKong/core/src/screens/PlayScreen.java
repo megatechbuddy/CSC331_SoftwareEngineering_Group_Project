@@ -168,13 +168,13 @@ public class PlayScreen implements Screen{
 		
 		renderer.render();
 		
+		b2dr.render(world, gamecam.combined);
 		game.batch.setProjectionMatrix(gamecam.combined);
 		game.batch.begin();
-		game.batch.draw(getAtlas().getTextures().first(), player.getX() - player.getWidth()/4, player.getY() - player.getHeight()/2,player.getWidth(),player.getHeight());
-
+		//game.batch.draw(getAtlas().getTextures().first(), player.getX() - player.getWidth()/4, player.getY() - player.getHeight()/2,player.getWidth(),player.getHeight());
+		player.draw(game.batch);
 		game.batch.end();
 	
-		b2dr.render(world, gamecam.combined);
 		
 		
 		game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
