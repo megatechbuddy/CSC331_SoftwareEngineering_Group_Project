@@ -86,10 +86,17 @@ public class Player extends Sprite{
 				region = playerStand;
 				break;
 		}
-		if((b2body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
+//		if((b2body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()) {
+//			region.flip(true, false);
+//			runningRight = false;
+//		}else if((b2body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()) {
+//			region.flip(true, false);
+//			runningRight = true;
+//		}
+		if(!runningRight && !region.isFlipX()) {
 			region.flip(true, false);
 			runningRight = false;
-		}else if((b2body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()) {
+		}else if(runningRight && region.isFlipX()) {
 			region.flip(true, false);
 			runningRight = true;
 		}
@@ -97,7 +104,11 @@ public class Player extends Sprite{
 	    previousState = currentState;
 	    return region;
 	}
-
+	
+	public void setState(boolean inputRunningRight) {
+		this.runningRight = inputRunningRight;
+	}
+	
 	private State getState() {
 		if(b2body.getLinearVelocity().y>0 || (b2body.getLinearVelocity().y < 0 && previousState == State.JUMPING)) {
 			return State.JUMPING;
