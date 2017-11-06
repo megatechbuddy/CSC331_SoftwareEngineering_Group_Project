@@ -27,6 +27,7 @@ public class Player extends Sprite{
 	private float stateTimer;
 	public World world;
 	public Body b2body;
+	public static int speed = 20;
 	
 	public Player(World world, PlayScreen screen) {
 		super(screen.getAtlas().findRegion("a"));
@@ -74,8 +75,8 @@ public class Player extends Sprite{
 		TextureRegion region;
 		switch(currentState) {
 			case JUMPING:
-				region = playerJump.getKeyFrame(stateTimer);
-				break;
+				//region = playerJump.getKeyFrame(stateTimer);
+				//break;
 			case RUNNING:
 				region = playerRun.getKeyFrame(stateTimer, true);
 				break;
