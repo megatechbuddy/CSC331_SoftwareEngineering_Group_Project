@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.2.1" icons="true" generate-combined-fragments="true">  
+  <object id="1" language="java" name="com.angrydonkeykong.game.desktop.DesktopLauncher" 
+    project="AngryDonkeyKong-desktop" 
+    file="/AngryDonkeyKong-desktop/src/com/angrydonkeykong/game/desktop/DesktopLauncher.java" binary="false" 
+    label="desktopLauncher" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="172" y="0"/>    
+    <execution id="2">      
+      <position height="72" width="212" x="5" y="113"/>    
+    </execution>    
+    <execution id="5">      
+      <position height="24" width="212" x="5" y="824"/>    
+    </execution>  
+  </object>  
+  <object id="6" language="java" name="com.angrydonkeykong.game.AngryDonkeyKongLibGDX" project="AngryDonkeyKong-core" 
+    file="/AngryDonkeyKong-core/src/com/angrydonkeykong/game/AngryDonkeyKongLibGDX.java" binary="false" 
+    label="angryDonkeyKongLibGDX" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="222" y="0"/>    
+    <execution id="4">      
+      <position height="24" width="209" x="221" y="137"/>    
+    </execution>    
+    <execution id="7">      
+      <position height="72" width="209" x="221" y="178"/>    
+    </execution>    
+    <execution id="10">      
+      <position height="72" width="209" x="221" y="720"/>    
+    </execution>    
+    <execution id="13">      
+      <position height="72" width="209" x="221" y="257"/>    
+    </execution>    
+    <execution id="16">      
+      <position height="72" width="209" x="221" y="800"/>    
+    </execution>  
+  </object>  
+  <object id="18" language="java" name="scenes.Hud" project="AngryDonkeyKong-core" 
+    file="/AngryDonkeyKong-core/src/scenes/Hud.java" binary="false" label="hud" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="539" y="0"/>    
+    <execution id="9">      
+      <position height="24" width="52" x="434" y="202"/>    
+    </execution>  
+  </object>  
+  <object id="19" language="java" name="scenes.UI" project="AngryDonkeyKong-core" 
+    file="/AngryDonkeyKong-core/src/scenes/UI.java" binary="false" label="ui" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="395" y="0"/>    
+    <execution id="12">      
+      <position height="24" width="48" x="490" y="744"/>    
+    </execution>  
+  </object>  
+  <object id="20" language="java" name="screens.PlayScreen" project="AngryDonkeyKong-core" 
+    file="/AngryDonkeyKong-core/src/screens/PlayScreen.java" binary="false" label="playScreen" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="606" y="0"/>    
+    <execution id="21">      
+      <position height="72" width="103" x="542" y="320"/>    
+    </execution>    
+    <execution id="24">      
+      <position height="72" width="103" x="542" y="485"/>    
+    </execution>    
+    <execution id="27">      
+      <position height="72" width="103" x="542" y="627"/>    
+    </execution>    
+    <execution id="15">      
+      <position height="24" width="103" x="542" y="281"/>    
+    </execution>    
+    <execution id="30">      
+      <position height="24" width="103" x="542" y="433"/>    
+    </execution>    
+    <execution id="31">      
+      <position height="24" width="103" x="542" y="593"/>    
+    </execution>    
+    <execution id="32">      
+      <position height="24" width="103" x="542" y="711"/>    
+    </execution>  
+  </object>  
+  <object id="33" language="java" name="sprites.Player" project="AngryDonkeyKong-core" 
+    file="/AngryDonkeyKong-core/src/sprites/Player.java" binary="false" label="player" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="812" y="0"/>    
+    <execution id="23">      
+      <position height="24" width="67" x="887" y="344"/>    
+    </execution>    
+    <execution id="34">      
+      <position height="72" width="67" x="649" y="409"/>    
+    </execution>  
+  </object>  
+  <object id="36" language="java" name="sprites.Bomb" project="AngryDonkeyKong-core" 
+    file="/AngryDonkeyKong-core/src/sprites/Bomb.java" binary="false" label="bomb" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="604" y="0"/>    
+    <execution id="26">      
+      <position height="24" width="64" x="720" y="509"/>    
+    </execution>    
+    <execution id="37">      
+      <position height="72" width="64" x="720" y="569"/>    
+    </execution>  
+  </object>  
+  <object id="39" language="java" name="sprites.InteractiveTileObject" project="AngryDonkeyKong-core" 
+    file="/AngryDonkeyKong-core/src/sprites/InteractiveTileObject.java" binary="false" label="interactiveTileObject" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="673" y="0"/>    
+    <execution id="29">      
+      <position height="24" width="166" x="788" y="651"/>    
+    </execution>    
+    <execution id="40">      
+      <position height="72" width="166" x="788" y="687"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="create():void" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="8" operation="Hud(com.badlogic.gdx.graphics.g2d.SpriteBatch)" asynchronous="false">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="9"/>  
+  </message>  
+  <message id="11" operation="UI(com.badlogic.gdx.graphics.g2d.SpriteBatch)" asynchronous="false" x="335" y="644">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="14" operation="PlayScreen(com.angrydonkeykong.game.AngryDonkeyKongLibGDX)" asynchronous="false">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="15"/>  
+  </message>  
+  <message id="17" operation="finalize():void" asynchronous="false">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="5"/>  
+  </message>  
+  <message id="22" operation="update(float):void" asynchronous="false">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="23"/>  
+  </message>  
+  <message id="25" 
+    operation="Bomb(com.badlogic.gdx.physics.box2d.World,com.badlogic.gdx.maps.tiled.TiledMap,com.badlogic.gdx.math.Rectangle)" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="26"/>  
+  </message>  
+  <message id="28" 
+    operation="InteractiveTileObject(com.badlogic.gdx.physics.box2d.World,com.badlogic.gdx.maps.tiled.TiledMap,com.badlogic.gdx.math.Rectangle)" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="29"/>  
+  </message>  
+  <message id="35" operation="update(float):void" asynchronous="false">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="30"/>  
+  </message>  
+  <message id="38" operation="update(float):void" asynchronous="false">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="31"/>  
+  </message>  
+  <message id="41" operation="update(float):void" asynchronous="false">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="32"/>  
+  </message>
+</sequence-diagram>

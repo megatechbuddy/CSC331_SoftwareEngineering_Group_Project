@@ -30,6 +30,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import scenes.Hud;
+import sprites.Barrel;
 import sprites.Player;
 
 public class PlayScreen implements Screen{
@@ -53,8 +54,8 @@ public class PlayScreen implements Screen{
 	//sprites
 	private Player player;
 	private TextureAtlas atlas;
+	private Barrel barrel;
 	
-	//Movement
 	private float player_x_velocity = 0;
 	private float player_y_velocity = 0;
 	
@@ -62,7 +63,7 @@ public class PlayScreen implements Screen{
 		this.game = game;
 		
 		//sprites
-		atlas = new TextureAtlas("AngryDonkeyKongSprites.pack");
+		atlas = new TextureAtlas("ChuyangRunning.pack");
 		
 		
 		gamecam = new OrthographicCamera();
@@ -77,7 +78,7 @@ public class PlayScreen implements Screen{
 		renderer = new OrthogonalTiledMapRenderer(map, 1  / AngryDonkeyKongLibGDX.PPM);
 		gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight()/2, 0);
 		
-		world = new World(new Vector2(0, -10 / AngryDonkeyKongLibGDX.PPM), true);
+		world = new World(new Vector2(0, -5000 / AngryDonkeyKongLibGDX.PPM), true);
 		b2dr = new Box2DDebugRenderer();
 		
 		BodyDef bdef = new BodyDef();
@@ -130,6 +131,7 @@ public class PlayScreen implements Screen{
 
         //create mario in our game world
         player = new Player(world, this);
+        barrel = new Barrel(world, this);
 	}
 	
 	@Override
@@ -158,6 +160,7 @@ public class PlayScreen implements Screen{
 			//player.b2body.applyLinearImpulse(new Vector2(-1f,0), player.b2body.getWorldCenter(), true);
 			player_x_velocity -= 1;}
 		player.b2body.setLinearVelocity(player_x_velocity*Player.speed, player_y_velocity*Player.speed);
+
 		
 	}
 
