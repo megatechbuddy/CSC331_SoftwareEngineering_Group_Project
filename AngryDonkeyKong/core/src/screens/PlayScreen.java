@@ -30,6 +30,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import scenes.Hud;
+import sprites.Barrel;
 import sprites.Player;
 
 public class PlayScreen implements Screen {
@@ -53,6 +54,7 @@ public class PlayScreen implements Screen {
 	// sprites
 	private Player player;
 	private TextureAtlas atlas;
+	private Barrel barrel;
 
 	// velocities of the player
 	private float player_x_velocity = 0;
@@ -135,6 +137,7 @@ public class PlayScreen implements Screen {
 
 		// create mario in our game world
 		player = new Player(world, this);
+		barrel = new Barrel(world, this);
 	}
 
 	@Override
@@ -144,44 +147,20 @@ public class PlayScreen implements Screen {
 	}
 
 	public void handleInput(float dt) {
-		// if(Gdx.input.isTouched())
-		// gamecam.position.x += 100 * dt;
-		//
-		// if(Gdx.input.isKeyPressed(Input.Keys.UP))
-		// player.b2body.setLinearVelocity(new Vector2(0,1));
-		// if(Gdx.input.isKeyPressed(Input.Keys.RIGHT))
-		// player.b2body.applyLinearImpulse(new Vector2(1f,0),
-		// player.b2body.getWorldCenter(), true);
-		// if(Gdx.input.isKeyPressed(Input.Keys.LEFT))
-		// player.b2body.applyLinearImpulse(new Vector2(-1f,0),
-		// player.b2body.getWorldCenter(), true);
-		// if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
-		// player.b2body.applyLinearImpulse(new Vector2(0,-1f),
-		// player.b2body.getWorldCenter(), true);
 
 		player_x_velocity = 0;
 		player_y_velocity = 0;
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			// player.b2body.applyLinearImpulse(new Vector2(0,4f),
-			// player.b2body.getWorldCenter(), true);
-			// jump();
 			player_y_velocity += 1;
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			// player.b2body.applyLinearImpulse(new Vector2(1f,0),
-			// player.b2body.getWorldCenter(), true);
 			player_x_velocity += 1;
-			player.setState(true);
+			player.faceRight();
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-			// player.b2body.applyLinearImpulse(new Vector2(-1f,0),
-			// player.b2body.getWorldCenter(), true);
 			player_x_velocity -= 1;
-			player.setState(false);
+			player.faceLeft();
 		}
-		// if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-		// player_y_velocity -= 0.5;
-		// }
 		player.b2body.setLinearVelocity(player_x_velocity * Player.speed, player_y_velocity * Player.speed);
 
 	}
