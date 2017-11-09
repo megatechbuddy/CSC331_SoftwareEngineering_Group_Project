@@ -3,15 +3,16 @@ package sprites;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.World;
+
 import screens.PlayScreen;
 import sprites.Player.State;
 
-public class Bomb extends Sprite implements MovingSpriteInterface{
+public class Bullet extends Sprite implements MovingSpriteInterface{
 
-	public Bomb(World world, PlayScreen screen) {
+	public Bullet(World world, PlayScreen screen) {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	@Override
 	public void update(float dt) {
 		// TODO Auto-generated method stub
@@ -35,4 +36,5 @@ public class Bomb extends Sprite implements MovingSpriteInterface{
 		// TODO Auto-generated method stub
 		
 	}
+
 }

@@ -14,9 +14,10 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import screens.PlayScreen;
+import sprites.Player.State;
 
 
-public class Barrel extends Sprite {
+public class Barrel extends Sprite implements MovingSpriteInterface{
 	public World world;
 	public Body b2body;
 	
@@ -40,6 +41,25 @@ public class Barrel extends Sprite {
 	
 	public void update(float dt)
 	{
+		setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+		setRegion(getFrame(dt));
+	}
+
+	@Override
+	public TextureRegion getFrame(float dt) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public State getState() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void defineSprite() {
+		// TODO Auto-generated method stub
 		
 	}
 

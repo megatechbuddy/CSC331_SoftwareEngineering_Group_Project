@@ -16,7 +16,7 @@ import com.badlogic.gdx.utils.Array;
 
 import screens.PlayScreen;
 
-public class Player extends Sprite {
+public class Player extends Sprite implements MovingSpriteInterface{
 	public enum State {
 		FALLING, JUMPING, STANDING, RUNNING
 	};
@@ -63,7 +63,7 @@ public class Player extends Sprite {
 		playerStand = new TextureRegion(getTexture(), 1, 1, 65, 120);
 
 		// show picture
-		definePlayer();
+		defineSprite();
 		setBounds(0, 0, 16 / AngryDonkeyKongLibGDX.PPM, 16 / AngryDonkeyKongLibGDX.PPM);
 		setRegion(playerStand);
 	}
@@ -73,7 +73,7 @@ public class Player extends Sprite {
 		setRegion(getFrame(dt));
 	}
 
-	private TextureRegion getFrame(float dt) {
+	public TextureRegion getFrame(float dt) {
 		currentState = getState();
 
 		TextureRegion region;
@@ -105,11 +105,12 @@ public class Player extends Sprite {
 	public void faceRight() {
 		this.runningRight = true;
 	}
+	
 	public void faceLeft() {
 		this.runningRight = false;
 	}
 	
-	private State getState() {
+	public State getState() {
 		if (b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y < 0 && previousState == State.JUMPING)) {
 			return State.JUMPING;
 		} else if (b2body.getLinearVelocity().y < 0) {
@@ -121,7 +122,7 @@ public class Player extends Sprite {
 		}
 	}
 
-	private void definePlayer() {
+	public void defineSprite() {
 		BodyDef bdef = new BodyDef();
 		bdef.position.set(50 / AngryDonkeyKongLibGDX.PPM, 50 / AngryDonkeyKongLibGDX.PPM);
 		bdef.type = BodyDef.BodyType.DynamicBody;
