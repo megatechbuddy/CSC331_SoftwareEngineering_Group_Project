@@ -191,14 +191,14 @@ public class PlayScreen implements Screen {
 		// put map boundaries x
 		if (player.getX() < 0 && player_x_velocity < 0) {
 			player_x_velocity = 0;
-		} else if (player.getX() > 59 && player_x_velocity > 0) {
+		} else if (player.getX() > 39 && player_x_velocity > 0) {
 			player_x_velocity = 0;
 		}
 		
 		// put map boundaries y
 		if (player.getY() < 0 && player_y_velocity < 0) {
 			player_y_velocity = 0;
-		} else if (player.getY() > 38 && player_y_velocity > 0) {
+		} else if (player.getY() > 18 && player_y_velocity > 0) {
 			player_y_velocity = 0;
 		}
 
@@ -215,6 +215,7 @@ public class PlayScreen implements Screen {
 
 		world.step(1 / 60f, 6, 2);
 		player.update(dt);
+		barrel.update(dt);
 		gamecam.update();
 		renderer.setView(gamecam);
 	}
@@ -222,10 +223,11 @@ public class PlayScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		update(delta);
-
+		
 		// clear the screen
-		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
 
 		renderer.render();
 
@@ -235,7 +237,9 @@ public class PlayScreen implements Screen {
 		// game.batch.draw(getAtlas().getTextures().first(), player.getX() -
 		// player.getWidth()/4, player.getY() -
 		// player.getHeight()/2,player.getWidth(),player.getHeight());
+		
 		player.draw(game.batch);
+		barrel.draw(game.batch);
 		game.batch.end();
 
 		game.batch.setProjectionMatrix(hud.stage.getCamera().combined);

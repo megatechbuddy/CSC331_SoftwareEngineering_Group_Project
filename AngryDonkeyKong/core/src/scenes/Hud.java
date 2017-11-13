@@ -3,6 +3,7 @@
 package scenes;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -39,13 +40,15 @@ public class Hud {
 		Table table = new Table();
 		table.top();
 		table.setFillParent(true);
-		
-		countDownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-		scoreLabel = new Label(String.format("%03d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-		timeLabel = new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-		levelLabel =  new Label("1-1", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-		worldLabel =  new Label("WORLD", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-		marioLabel =  new Label("MARIO", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+
+		BitmapFont font = new BitmapFont(Gdx.files.classpath("com/badlogic/gdx/utils/arial-15.fnt"), Gdx.files.classpath("com/badlogic/gdx/utils/arial-15.png"), false);
+	
+		countDownLabel = new Label(String.format("%03d", worldTimer), new Label.LabelStyle(font, Color.WHITE));
+		scoreLabel = new Label(String.format("%03d", score), new Label.LabelStyle(font, Color.WHITE));
+		timeLabel = new Label("TIME", new Label.LabelStyle(font, Color.WHITE));
+		levelLabel =  new Label("1-1", new Label.LabelStyle(font, Color.WHITE));
+		worldLabel =  new Label("WORLD", new Label.LabelStyle(font, Color.WHITE));
+		marioLabel =  new Label("MARIO", new Label.LabelStyle(font, Color.WHITE));
 
 		table.add(marioLabel).expandX().padTop(10);
 		table.add(worldLabel).expandX().padTop(10);

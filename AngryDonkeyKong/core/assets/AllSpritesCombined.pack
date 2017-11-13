@@ -143,3 +143,10 @@ Running_m
   orig: 65, 120
   offset: 0, 0
   index: -1
+Barrel_a
+  rotate: false
+  xy: 891, 209
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1

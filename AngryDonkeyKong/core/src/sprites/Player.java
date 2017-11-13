@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.Array;
 
 import screens.PlayScreen;
 
-public class Player extends Sprite implements MovingSpriteInterface {
+public class Player extends Sprite{
 	public enum State {
 		FALLING, JUMPING, STANDING, RUNNING, FIRING_GUN
 	};
@@ -152,7 +152,7 @@ public class Player extends Sprite implements MovingSpriteInterface {
 
 	public State getState() {
 		if (fireGun) {
-			System.out.println("gun");
+			//System.out.println("gun");
 			return State.FIRING_GUN;
 //		} else if (b2body.getLinearVelocity().y > 0
 //				|| (b2body.getLinearVelocity().y < 0 && previousState == State.JUMPING)) {
@@ -160,7 +160,7 @@ public class Player extends Sprite implements MovingSpriteInterface {
 //		} else if (b2body.getLinearVelocity().y < 0) {
 //			return State.FALLING;
 		} else if (b2body.getLinearVelocity().x != 0) {
-			System.out.println("running");
+		//	System.out.println("running");
 			return State.RUNNING;
 		} else {
 			return State.STANDING;
@@ -183,16 +183,16 @@ public class Player extends Sprite implements MovingSpriteInterface {
 
 		FixtureDef fDef = new FixtureDef();
 
-		Texture img = new Texture("AllSpritesCombined.png"); // string is irrelevant
-		Sprite sprite = new Sprite(img);
 		PolygonShape shape2 = new PolygonShape();
 
 		shape2.setAsBox(8 / AngryDonkeyKongLibGDX.PPM, 8 / AngryDonkeyKongLibGDX.PPM);
-
+		
 		fDef.shape = shape2;
 		fDef.density = 1f;
+		
 
 		b2body.createFixture(fDef);
+	
 		// Shape is the only disposable of the lot, so get rid of it
 		shape2.dispose();
 	}
