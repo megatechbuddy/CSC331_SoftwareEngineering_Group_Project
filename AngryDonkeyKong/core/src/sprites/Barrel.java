@@ -2,6 +2,7 @@ package sprites;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -18,8 +19,19 @@ import sprites.Player.State;
 
 
 public class Barrel extends Sprite implements MovingSpriteInterface{
+//	public enum State {
+//		STILL, ROLLING, EXPLODING
+//	};
 	public World world;
 	public Body b2body;
+	public State currentState;
+	public State previousState;
+	private Animation<TextureRegion> playerRun;
+	private TextureRegion playerStand;
+	private Animation<TextureRegion> playerJump;
+	private boolean runningRight;
+	private float stateTimer;
+	private TextureRegion donkeyStand;
 	
 	public Barrel(World world, PlayScreen screen) {
 		BodyDef bdef = new BodyDef();

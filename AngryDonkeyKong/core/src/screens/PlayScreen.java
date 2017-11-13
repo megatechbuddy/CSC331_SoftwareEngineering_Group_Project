@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g3d.decals.PluggableGroupStrategy;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -147,9 +148,10 @@ public class PlayScreen implements Screen {
 	}
 
 	public void handleInput(float dt) {
-
+		// variables for velocity
 		player_x_velocity = 0;
 		player_y_velocity = 0;
+		// key inputs
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
 			player_y_velocity += 1;
 		}
@@ -161,6 +163,23 @@ public class PlayScreen implements Screen {
 			player_x_velocity -= 1;
 			player.faceLeft();
 		}
+
+		// put map boundaries x
+		if (player.getX() < 0 && player_x_velocity < 0) {
+			player_x_velocity = 0;
+		} else if (player.getX() > 59 && player_x_velocity > 0) {
+			player_x_velocity = 0;
+		}
+		
+		// put map boundaries y
+		if (player.getY() < 0 && player_y_velocity < 0) {
+			player_y_velocity = 0;
+		} else if (player.getY() > 38 && player_y_velocity > 0) {
+			player_y_velocity = 0;
+		}
+
+		System.out.println(player.getX() + ", " + player.getY());
+		// set the velocity to the player
 		player.b2body.setLinearVelocity(player_x_velocity * Player.speed, player_y_velocity * Player.speed);
 
 	}
