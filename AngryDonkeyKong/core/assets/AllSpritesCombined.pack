@@ -1,95 +1,144 @@
 
-ChuyangRunning.png
+AllSpritesCombined.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-a
+FireGun_a
+  rotate: false
+  xy: 1, 123
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+FireGun_b
   rotate: false
   xy: 1, 1
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+FireGun_c
+  rotate: false
+  xy: 123, 123
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+FireGun_d
+  rotate: false
+  xy: 123, 1
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+FireGun_e
+  rotate: false
+  xy: 245, 123
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+FireGun_f
+  rotate: false
+  xy: 245, 1
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+FireGun_g
+  rotate: false
+  xy: 367, 123
+  size: 120, 120
+  orig: 120, 120
+  offset: 0, 0
+  index: -1
+Running_a
+  rotate: false
+  xy: 367, 1
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
-b
+Running_b
   rotate: false
-  xy: 68, 1
+  xy: 489, 123
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
-c
+Running_c
   rotate: false
-  xy: 135, 1
+  xy: 434, 1
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
-d
+Running_d
   rotate: false
-  xy: 202, 1
+  xy: 556, 123
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
-e
+Running_e
   rotate: false
-  xy: 269, 1
+  xy: 501, 1
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
-f
+Running_f
   rotate: false
-  xy: 336, 1
+  xy: 623, 123
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
-g
+Running_g
   rotate: false
-  xy: 403, 1
+  xy: 568, 1
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
-h
+Running_h
   rotate: false
-  xy: 470, 1
+  xy: 690, 123
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
-i
+Running_i
   rotate: false
-  xy: 537, 1
+  xy: 635, 1
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
-j
+Running_j
   rotate: false
-  xy: 604, 1
+  xy: 757, 123
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
-k
+Running_k
   rotate: false
-  xy: 671, 1
+  xy: 702, 1
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
-l
+Running_l
   rotate: false
-  xy: 738, 1
+  xy: 824, 123
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
-m
+Running_m
   rotate: false
-  xy: 805, 1
+  xy: 769, 1
   size: 65, 120
   orig: 65, 120
   offset: 0, 0

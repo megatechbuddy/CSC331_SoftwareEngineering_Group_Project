@@ -61,11 +61,14 @@ public class PlayScreen implements Screen {
 	private float player_x_velocity = 0;
 	private float player_y_velocity = 0;
 
+	//previous inputs
+	boolean previousSpaceState;
+	
 	public PlayScreen(AngryDonkeyKongLibGDX game) {
 		this.game = game;
 
 		// sprites
-		atlas = new TextureAtlas("ChuyangRunning.pack");
+		atlas = new TextureAtlas("AllSpritesCombined.pack");
 
 		gamecam = new OrthographicCamera();
 		gamePort = new FitViewport(AngryDonkeyKongLibGDX.V_WIDTH / AngryDonkeyKongLibGDX.PPM,
@@ -139,6 +142,9 @@ public class PlayScreen implements Screen {
 		// create mario in our game world
 		player = new Player(world, this);
 		barrel = new Barrel(world, this);
+		
+		//initialize variables 
+		previousSpaceState = false;
 	}
 
 	@Override
@@ -148,10 +154,11 @@ public class PlayScreen implements Screen {
 	}
 
 	public void handleInput(float dt) {
+		
 		// variables for velocity
 		player_x_velocity = 0;
 		player_y_velocity = 0;
-		// key inputs
+		// key inputs for movement
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
 			player_y_velocity += 1;
 		}
@@ -163,6 +170,23 @@ public class PlayScreen implements Screen {
 			player_x_velocity -= 1;
 			player.faceLeft();
 		}
+		
+		// key inputs for weapons
+		if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && !previousSpaceState) {
+			//fire gun
+			player.setStateFireGun();
+			//System.out.println("firing gun now");
+			
+			//update the state recording variable
+			previousSpaceState = true;
+		}else if(!Gdx.input.isKeyPressed(Input.Keys.SPACE) && previousSpaceState){
+			//stop gun
+			player.setStateFireGun();
+
+			//update the state recording variable
+			previousSpaceState = false;
+		}
+		
 
 		// put map boundaries x
 		if (player.getX() < 0 && player_x_velocity < 0) {
@@ -178,7 +202,9 @@ public class PlayScreen implements Screen {
 			player_y_velocity = 0;
 		}
 
-		System.out.println(player.getX() + ", " + player.getY());
+		//for debugging
+		//System.out.println(player.getX() + ", " + player.getY());
+		
 		// set the velocity to the player
 		player.b2body.setLinearVelocity(player_x_velocity * Player.speed, player_y_velocity * Player.speed);
 
