@@ -159,16 +159,19 @@ public class PlayScreen implements Screen {
 		player_x_velocity = 0;
 		player_y_velocity = 0;
 		// key inputs for movement
-		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+		if (Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) {
 			player_y_velocity += 1;
 		}
-		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
 			player_x_velocity += 1;
 			player.faceRight();
 		}
-		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+		if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
 			player_x_velocity -= 1;
 			player.faceLeft();
+		}
+		if (Gdx.input.isKeyPressed(Input.Keys.E)) {
+			barrel.startExplosion();
 		}
 		
 		// key inputs for weapons

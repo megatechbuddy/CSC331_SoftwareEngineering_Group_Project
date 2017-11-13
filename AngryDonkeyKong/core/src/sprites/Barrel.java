@@ -65,9 +65,10 @@ public class Barrel extends Sprite{
 		frames.clear();
 
 		// StartExplosion Frames
-		frames.add(screen.getAtlas().findRegion("Barrel_A"));
+		frames.add(screen.getAtlas().findRegion("Explosion_a"));
+		frames.add(screen.getAtlas().findRegion("Explosion_b"));
 
-		barrellExplode = new Animation(0.1f, frames);
+		barrellExplode = new Animation(0.4f, frames);
 		frames.clear();
 
 		playerStand = new TextureRegion(screen.getAtlas().findRegion("Barrel_A"));
@@ -133,6 +134,10 @@ public class Barrel extends Sprite{
 		}
 	}
 
+	public void startExplosion() {
+		startExplosion = true;
+	}
+	
 	public void defineSprite() {
 		BodyDef bdef = new BodyDef();
 		Vector2 start_position = new Vector2(20, 13);

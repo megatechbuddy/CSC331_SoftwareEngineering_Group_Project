@@ -199,3 +199,17 @@ Barrel_H
   orig: 34, 34
   offset: 0, 0
   index: -1
+Explosion_a
+  rotate: false
+  xy: 836, 15
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+Explosion_b
+  rotate: false
+  xy: 927, 137
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
