@@ -67,6 +67,7 @@ public class Barrel extends Sprite{
 		// StartExplosion Frames
 		frames.add(screen.getAtlas().findRegion("Explosion_a"));
 		frames.add(screen.getAtlas().findRegion("Explosion_b"));
+		frames.add(screen.getAtlas().findRegion("Explosion_c"));
 
 		barrellExplode = new Animation(0.4f, frames);
 		frames.clear();

@@ -213,3 +213,10 @@ Explosion_b
   orig: 34, 34
   offset: 0, 0
   index: -1
+Explosion_c
+  rotate: false
+  xy: 963, 173
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
