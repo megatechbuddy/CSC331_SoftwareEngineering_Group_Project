@@ -143,9 +143,58 @@ Running_m
   orig: 65, 120
   offset: 0, 0
   index: -1
-Barrel_a
+Barrel_A
   rotate: false
   xy: 891, 209
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+Barrel_B
+  rotate: false
+  xy: 836, 87
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+Barrel_C
+  rotate: false
+  xy: 891, 173
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+Barrel_D
+  rotate: false
+  xy: 927, 209
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+Barrel_E
+  rotate: false
+  xy: 836, 51
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+Barrel_F
+  rotate: false
+  xy: 891, 137
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+Barrel_G
+  rotate: false
+  xy: 927, 173
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+Barrel_H
+  rotate: false
+  xy: 963, 209
   size: 34, 34
   orig: 34, 34
   offset: 0, 0

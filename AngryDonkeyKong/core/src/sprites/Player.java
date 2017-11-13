@@ -34,7 +34,7 @@ public class Player extends Sprite{
 	private TextureRegion donkeyStand;
 	private boolean fireGun;
 
-	public static int speed = 20;
+	public static int speed = 10;
 
 	public Player(World world, PlayScreen screen) {
 		super(screen.getAtlas().findRegion("Running_a"));

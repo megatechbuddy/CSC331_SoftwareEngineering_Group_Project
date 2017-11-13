@@ -38,7 +38,7 @@ public class Barrel extends Sprite{
 	public static int speed = 20;
 
 	public Barrel(World world, PlayScreen screen) {
-		super(screen.getAtlas().findRegion("Barrel_a"));
+		super(screen.getAtlas().findRegion("Barrel_A"));
 		this.world = world;
 
 		// change picture animation
@@ -52,18 +52,25 @@ public class Barrel extends Sprite{
 
 		// Rolling frames
 		Array<TextureRegion> frames = new Array<TextureRegion>();
-		frames.add(screen.getAtlas().findRegion("Barrel_a"));
+		frames.add(screen.getAtlas().findRegion("Barrel_A"));
+		frames.add(screen.getAtlas().findRegion("Barrel_B"));
+		frames.add(screen.getAtlas().findRegion("Barrel_C"));
+		frames.add(screen.getAtlas().findRegion("Barrel_D"));
+		frames.add(screen.getAtlas().findRegion("Barrel_E"));
+		frames.add(screen.getAtlas().findRegion("Barrel_F"));
+		frames.add(screen.getAtlas().findRegion("Barrel_G"));
+		frames.add(screen.getAtlas().findRegion("Barrel_H"));
 
 		barrellRoll = new Animation(0.1f, frames);
 		frames.clear();
 
 		// StartExplosion Frames
-		frames.add(screen.getAtlas().findRegion("Barrel_a"));
+		frames.add(screen.getAtlas().findRegion("Barrel_A"));
 
 		barrellExplode = new Animation(0.1f, frames);
 		frames.clear();
 
-		playerStand = new TextureRegion(screen.getAtlas().findRegion("Running_a"));
+		playerStand = new TextureRegion(screen.getAtlas().findRegion("Barrel_A"));
 
 		// show picture
 		defineSprite();
