@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.Array;
 import screens.PlayScreen;
 import sprites.Player.State;
 
-public class Barrel extends Sprite{
+public class Kong extends Sprite{
 	public enum State {
 		STILL, ROLLING, EXPLODING
 	};
@@ -37,8 +37,8 @@ public class Barrel extends Sprite{
 	private boolean startExplosion;
 	public static int speed = 20;
 
-	public Barrel(World world, PlayScreen screen) {
-		super(screen.getAtlas().findRegion("Barrel_A"));
+	public Kong(World world, PlayScreen screen) {
+		super(screen.getAtlas().findRegion("KongFront"));
 		this.world = world;
 
 		// change picture animation
@@ -52,27 +52,18 @@ public class Barrel extends Sprite{
 
 		// Rolling frames
 		Array<TextureRegion> frames = new Array<TextureRegion>();
-		frames.add(screen.getAtlas().findRegion("Barrel_A"));
-		frames.add(screen.getAtlas().findRegion("Barrel_B"));
-		frames.add(screen.getAtlas().findRegion("Barrel_C"));
-		frames.add(screen.getAtlas().findRegion("Barrel_D"));
-		frames.add(screen.getAtlas().findRegion("Barrel_E"));
-		frames.add(screen.getAtlas().findRegion("Barrel_F"));
-		frames.add(screen.getAtlas().findRegion("Barrel_G"));
-		frames.add(screen.getAtlas().findRegion("Barrel_H"));
+		frames.add(screen.getAtlas().findRegion("KongFront"));
 
 		barrellRoll = new Animation(0.1f, frames);
 		frames.clear();
 
 		// StartExplosion Frames
-		frames.add(screen.getAtlas().findRegion("Explosion_a"));
-		frames.add(screen.getAtlas().findRegion("Explosion_b"));
-		frames.add(screen.getAtlas().findRegion("Explosion_c"));
+		frames.add(screen.getAtlas().findRegion("KongFront"));
 
 		barrellExplode = new Animation(0.4f, frames);
 		frames.clear();
 
-		playerStand = new TextureRegion(screen.getAtlas().findRegion("Barrel_A"));
+		playerStand = new TextureRegion(screen.getAtlas().findRegion("KongFront"));
 
 		// show picture
 		defineSprite();
@@ -137,13 +128,10 @@ public class Barrel extends Sprite{
 		}
 	}
 
-	public void startExplosion() {
-		startExplosion = true;
-	}
 	
 	public void defineSprite() {
 		BodyDef bdef = new BodyDef();
-		Vector2 start_position = new Vector2(20, 13);
+		Vector2 start_position = new Vector2(10, 13);
 		bdef.position.set(start_position);
 		b2body = world.createBody(bdef);
 

@@ -30,8 +30,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import Tools.WorldContactListener;
 import scenes.Hud;
 import sprites.Barrel;
+import sprites.Kong;
 import sprites.Player;
 
 public class PlayScreen implements Screen {
@@ -56,6 +58,7 @@ public class PlayScreen implements Screen {
 	private Player player;
 	private TextureAtlas atlas;
 	private Barrel barrel;
+	private Kong kong;
 
 	// velocities of the player
 	private float player_x_velocity = 0;
@@ -142,9 +145,12 @@ public class PlayScreen implements Screen {
 		// create mario in our game world
 		player = new Player(world, this);
 		barrel = new Barrel(world, this);
+		kong = new Kong(world, this);
 		
 		//initialize variables 
 		previousSpaceState = false;
+		
+		world.setContactListener(new WorldContactListener());
 	}
 
 	@Override
@@ -219,6 +225,7 @@ public class PlayScreen implements Screen {
 		world.step(1 / 60f, 6, 2);
 		player.update(dt);
 		barrel.update(dt);
+		kong.update(dt);
 		gamecam.update();
 		renderer.setView(gamecam);
 	}
@@ -243,6 +250,7 @@ public class PlayScreen implements Screen {
 		
 		player.draw(game.batch);
 		barrel.draw(game.batch);
+		kong.draw(game.batch);
 		game.batch.end();
 
 		game.batch.setProjectionMatrix(hud.stage.getCamera().combined);

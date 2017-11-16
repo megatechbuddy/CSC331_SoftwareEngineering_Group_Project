@@ -143,79 +143,86 @@ Running_m
   orig: 65, 120
   offset: 0, 0
   index: -1
-Barrel_A
+KongFront
   rotate: false
-  xy: 891, 209
-  size: 34, 34
-  orig: 34, 34
+  xy: 891, 199
+  size: 52, 44
+  orig: 52, 44
   offset: 0, 0
   index: -1
-Barrel_B
+Barrel_A
   rotate: false
   xy: 836, 87
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
+Barrel_B
+  rotate: false
+  xy: 891, 163
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
 Barrel_C
   rotate: false
-  xy: 891, 173
+  xy: 945, 209
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Barrel_D
   rotate: false
-  xy: 927, 209
+  xy: 836, 51
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Barrel_E
   rotate: false
-  xy: 836, 51
+  xy: 891, 127
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Barrel_F
   rotate: false
-  xy: 891, 137
+  xy: 981, 209
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Barrel_G
   rotate: false
-  xy: 927, 173
+  xy: 836, 15
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Barrel_H
   rotate: false
-  xy: 963, 209
+  xy: 872, 87
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Explosion_a
   rotate: false
-  xy: 836, 15
+  xy: 872, 51
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Explosion_b
   rotate: false
-  xy: 927, 137
+  xy: 872, 15
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Explosion_c
   rotate: false
-  xy: 963, 173
+  xy: 927, 163
   size: 34, 34
   orig: 34, 34
   offset: 0, 0

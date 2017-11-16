@@ -5,10 +5,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -193,6 +195,13 @@ public class Player extends Sprite{
 
 		b2body.createFixture(fDef);
 	
+		EdgeShape head = new EdgeShape();
+		head.set(new Vector2(-2 / AngryDonkeyKongLibGDX.PPM, 9/AngryDonkeyKongLibGDX.PPM), new Vector2(2 / AngryDonkeyKongLibGDX.PPM, 9/AngryDonkeyKongLibGDX.PPM));
+		fDef.shape = head;
+		fDef.isSensor = true;
+		
+		b2body.createFixture(fDef).setUserData("head");
+		
 		// Shape is the only disposable of the lot, so get rid of it
 		shape2.dispose();
 	}
