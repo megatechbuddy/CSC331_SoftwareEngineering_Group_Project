@@ -21,7 +21,7 @@ import com.badlogic.gdx.utils.Array;
 import screens.PlayScreen;
 import sprites.Player.State;
 
-public class Barrel extends Sprite implements InteractiveSpriteObject{
+public class Barrel extends Sprite{
 	public enum State {
 		STILL, ROLLING, EXPLODING
 	}
@@ -163,11 +163,4 @@ public class Barrel extends Sprite implements InteractiveSpriteObject{
 		fDef.shape = shape;
 		b2body.createFixture(fDef).setUserData(this);
 	}
-
-	@Override
-	public void onHit() {
-		startExplosion();
-		
-	}
-
 }

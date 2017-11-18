@@ -13,7 +13,6 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
 import sprites.Barrel;
-import sprites.InteractiveSpriteObject;
 import sprites.InteractiveTileObject;
 
 public class WorldContactListener implements ContactListener {
