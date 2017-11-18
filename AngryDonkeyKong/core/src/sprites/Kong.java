@@ -1,6 +1,10 @@
+//Author: Sean Benson 
+//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+
 package sprites;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -37,9 +41,9 @@ public class Kong extends Sprite{
 	private boolean startExplosion;
 	public static int speed = 20;
 
-	public Kong(World world, PlayScreen screen) {
+	public Kong(PlayScreen screen) {
 		super(screen.getAtlas().findRegion("KongFront"));
-		this.world = world;
+		this.world = screen.getWorld();
 
 		// change picture animation
 		currentState = State.STILL;
@@ -143,8 +147,7 @@ public class Kong extends Sprite{
 		fDef.shape = shape2;
 		fDef.density = 1f;
 
-		b2body.createFixture(fDef);
+		b2body.createFixture(fDef).setUserData("kong");
 		shape2.dispose();
 	}
-
 }

@@ -1,4 +1,6 @@
 //Author: Sean Benson 
+//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+
 package com.angrydonkeykong.game;
 
 import com.badlogic.gdx.Game;
@@ -12,6 +14,11 @@ public class AngryDonkeyKongLibGDX extends Game {
 	public static final int V_WIDTH = 408;
 	public static final int V_HEIGHT = 200;
 	public static final float PPM = 10;
+	
+	//Box2D Collision Bits
+	public static final short BARREL_BIT = 1;
+	public static final short BRICK_BIT = 2;
+	public static final short PLAYER_BIT = 4;
 	
 	@Override
 	public void create () {

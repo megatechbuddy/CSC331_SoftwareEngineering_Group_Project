@@ -1,3 +1,6 @@
+//Author: Sean Benson 
+//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+
 package sprites;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
@@ -38,9 +41,9 @@ public class Player extends Sprite{
 
 	public static int speed = 10;
 
-	public Player(World world, PlayScreen screen) {
+	public Player(PlayScreen screen) {
 		super(screen.getAtlas().findRegion("Running_a"));
-		this.world = world;
+		this.world = screen.getWorld();
 
 		// change picture animation
 		currentState = State.STANDING;
@@ -193,14 +196,16 @@ public class Player extends Sprite{
 		fDef.density = 1f;
 		
 
-		b2body.createFixture(fDef);
+		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.PLAYER_BIT;
+		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | AngryDonkeyKongLibGDX.BARREL_BIT | AngryDonkeyKongLibGDX.PLAYER_BIT;
+		b2body.createFixture(fDef).setUserData(this);
 	
-		EdgeShape head = new EdgeShape();
-		head.set(new Vector2(-2 / AngryDonkeyKongLibGDX.PPM, 9/AngryDonkeyKongLibGDX.PPM), new Vector2(2 / AngryDonkeyKongLibGDX.PPM, 9/AngryDonkeyKongLibGDX.PPM));
-		fDef.shape = head;
-		fDef.isSensor = true;
-		
-		b2body.createFixture(fDef).setUserData("head");
+//		EdgeShape head = new EdgeShape();
+//		head.set(new Vector2(-2 / AngryDonkeyKongLibGDX.PPM, 9/AngryDonkeyKongLibGDX.PPM), new Vector2(2 / AngryDonkeyKongLibGDX.PPM, 9/AngryDonkeyKongLibGDX.PPM));
+//		fDef.shape = head;
+//		fDef.isSensor = true;
+//		
+//		b2body.createFixture(fDef).setUserData("head");
 		
 		// Shape is the only disposable of the lot, so get rid of it
 		shape2.dispose();

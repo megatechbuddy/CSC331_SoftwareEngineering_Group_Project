@@ -1,6 +1,5 @@
 //Author: Sean Benson 
-//Followed https://www.youtube.com/watch?v=7idwNW5a8Qs&index=4&list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial 
-//and modified things for our game.
+//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
 
 package screens;
 
@@ -30,11 +29,13 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import Tools.B2WorldCreator;
 import Tools.WorldContactListener;
 import scenes.Hud;
 import sprites.Barrel;
 import sprites.Kong;
 import sprites.Player;
+import sprites.Princess;
 
 public class PlayScreen implements Screen {
 	private AngryDonkeyKongLibGDX game;
@@ -59,14 +60,15 @@ public class PlayScreen implements Screen {
 	private TextureAtlas atlas;
 	private Barrel barrel;
 	private Kong kong;
+	private Princess princess;
 
 	// velocities of the player
 	private float player_x_velocity = 0;
 	private float player_y_velocity = 0;
 
-	//previous inputs
+	// previous inputs
 	boolean previousSpaceState;
-	
+
 	public PlayScreen(AngryDonkeyKongLibGDX game) {
 		this.game = game;
 
@@ -94,62 +96,19 @@ public class PlayScreen implements Screen {
 		FixtureDef fdef = new FixtureDef();
 		Body body;
 
-		// create background
-		for (MapObject object : map.getLayers().get(0).getObjects().getByType(RectangleMapObject.class)) {
-			Rectangle rect = ((RectangleMapObject) object).getRectangle();
 
-			bdef.type = BodyDef.BodyType.StaticBody;
-			bdef.position.set((rect.getX() + rect.getWidth() / 2) / AngryDonkeyKongLibGDX.PPM,
-					(rect.getY() + rect.getHeight() / 2) / AngryDonkeyKongLibGDX.PPM);
-
-			body = world.createBody(bdef);
-
-			shape.setAsBox((rect.getWidth() / 2) / AngryDonkeyKongLibGDX.PPM,
-					(rect.getHeight() / 2) / AngryDonkeyKongLibGDX.PPM);
-			fdef.shape = shape;
-			body.createFixture(fdef);
-		}
-
-		// create ground
-		for (MapObject object : map.getLayers().get(1).getObjects().getByType(RectangleMapObject.class)) {
-			Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-			bdef.type = BodyDef.BodyType.StaticBody;
-			bdef.position.set((rect.getX() + rect.getWidth() / 2) / AngryDonkeyKongLibGDX.PPM,
-					(rect.getY() + rect.getHeight() / 2) / AngryDonkeyKongLibGDX.PPM);
-
-			body = world.createBody(bdef);
-
-			shape.setAsBox((rect.getWidth() / 2) / AngryDonkeyKongLibGDX.PPM,
-					(rect.getHeight() / 2) / AngryDonkeyKongLibGDX.PPM);
-			fdef.shape = shape;
-			body.createFixture(fdef);
-		}
-
-		// create platform
-		for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
-			Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
-			bdef.type = BodyDef.BodyType.StaticBody;
-			bdef.position.set((rect.getX() + rect.getWidth() / 2) / AngryDonkeyKongLibGDX.PPM,
-					(rect.getY() + rect.getHeight() / 2) / AngryDonkeyKongLibGDX.PPM);
-
-			body = world.createBody(bdef);
-
-			shape.setAsBox((rect.getWidth() / 2) / AngryDonkeyKongLibGDX.PPM,
-					(rect.getHeight() / 2) / AngryDonkeyKongLibGDX.PPM);
-			fdef.shape = shape;
-			body.createFixture(fdef);
-		}
+		
+		new B2WorldCreator(this);
 
 		// create mario in our game world
-		player = new Player(world, this);
-		barrel = new Barrel(world, this);
-		kong = new Kong(world, this);
-		
-		//initialize variables 
+		player = new Player(this);
+		barrel = new Barrel(this);
+		kong = new Kong(this);
+		princess = new Princess(this);
+
+		// initialize variables
 		previousSpaceState = false;
-		
+
 		world.setContactListener(new WorldContactListener());
 	}
 
@@ -160,7 +119,7 @@ public class PlayScreen implements Screen {
 	}
 
 	public void handleInput(float dt) {
-		
+
 		// variables for velocity
 		player_x_velocity = 0;
 		player_y_velocity = 0;
@@ -179,23 +138,22 @@ public class PlayScreen implements Screen {
 		if (Gdx.input.isKeyPressed(Input.Keys.E)) {
 			barrel.startExplosion();
 		}
-		
+
 		// key inputs for weapons
 		if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && !previousSpaceState) {
-			//fire gun
+			// fire gun
 			player.setStateFireGun();
-			//System.out.println("firing gun now");
-			
-			//update the state recording variable
+			// System.out.println("firing gun now");
+
+			// update the state recording variable
 			previousSpaceState = true;
-		}else if(!Gdx.input.isKeyPressed(Input.Keys.SPACE) && previousSpaceState){
-			//stop gun
+		} else if (!Gdx.input.isKeyPressed(Input.Keys.SPACE) && previousSpaceState) {
+			// stop gun
 			player.setStateFireGun();
 
-			//update the state recording variable
+			// update the state recording variable
 			previousSpaceState = false;
 		}
-		
 
 		// put map boundaries x
 		if (player.getX() < 0 && player_x_velocity < 0) {
@@ -203,7 +161,7 @@ public class PlayScreen implements Screen {
 		} else if (player.getX() > 39 && player_x_velocity > 0) {
 			player_x_velocity = 0;
 		}
-		
+
 		// put map boundaries y
 		if (player.getY() < 0 && player_y_velocity < 0) {
 			player_y_velocity = 0;
@@ -211,9 +169,9 @@ public class PlayScreen implements Screen {
 			player_y_velocity = 0;
 		}
 
-		//for debugging
-		//System.out.println(player.getX() + ", " + player.getY());
-		
+		// for debugging
+		// System.out.println(player.getX() + ", " + player.getY());
+
 		// set the velocity to the player
 		player.b2body.setLinearVelocity(player_x_velocity * Player.speed, player_y_velocity * Player.speed);
 
@@ -226,6 +184,7 @@ public class PlayScreen implements Screen {
 		player.update(dt);
 		barrel.update(dt);
 		kong.update(dt);
+		princess.update(dt);
 		gamecam.update();
 		renderer.setView(gamecam);
 	}
@@ -233,11 +192,10 @@ public class PlayScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		update(delta);
-		
+
 		// clear the screen
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
 
 		renderer.render();
 
@@ -247,10 +205,11 @@ public class PlayScreen implements Screen {
 		// game.batch.draw(getAtlas().getTextures().first(), player.getX() -
 		// player.getWidth()/4, player.getY() -
 		// player.getHeight()/2,player.getWidth(),player.getHeight());
-		
+
 		player.draw(game.batch);
 		barrel.draw(game.batch);
 		kong.draw(game.batch);
+		princess.draw(game.batch);
 		game.batch.end();
 
 		game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
@@ -292,6 +251,14 @@ public class PlayScreen implements Screen {
 
 	public Hud getHud() {
 		return hud;
+	}
+
+	public TiledMap getMap() {
+		return map;
+	}
+
+	public World getWorld() {
+		return world;
 	}
 
 }

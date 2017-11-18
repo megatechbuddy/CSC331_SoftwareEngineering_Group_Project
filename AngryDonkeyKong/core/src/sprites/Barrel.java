@@ -1,3 +1,6 @@
+//Author: Sean Benson & Keven
+//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+
 package sprites;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
@@ -18,10 +21,11 @@ import com.badlogic.gdx.utils.Array;
 import screens.PlayScreen;
 import sprites.Player.State;
 
-public class Barrel extends Sprite{
+public class Barrel extends Sprite implements InteractiveSpriteObject{
 	public enum State {
 		STILL, ROLLING, EXPLODING
-	};
+	}
+
 
 	public World world;
 	public Body b2body;
@@ -37,9 +41,10 @@ public class Barrel extends Sprite{
 	private boolean startExplosion;
 	public static int speed = 20;
 
-	public Barrel(World world, PlayScreen screen) {
+	public Barrel(PlayScreen screen) {
 		super(screen.getAtlas().findRegion("Barrel_A"));
-		this.world = world;
+		this.world = screen.getWorld();
+		
 
 		// change picture animation
 		currentState = State.STILL;
@@ -145,18 +150,24 @@ public class Barrel extends Sprite{
 		BodyDef bdef = new BodyDef();
 		Vector2 start_position = new Vector2(20, 13);
 		bdef.position.set(start_position);
+        bdef.type = BodyDef.BodyType.DynamicBody;
 		b2body = world.createBody(bdef);
 
 		FixtureDef fDef = new FixtureDef();
-		PolygonShape shape2 = new PolygonShape();
+        CircleShape shape = new CircleShape();
+        shape.setRadius(6 / AngryDonkeyKongLibGDX.PPM);
+		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.BARREL_BIT;
+		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | AngryDonkeyKongLibGDX.BARREL_BIT | AngryDonkeyKongLibGDX.PLAYER_BIT;
 
-		shape2.setAsBox(10 / AngryDonkeyKongLibGDX.PPM, 10 / AngryDonkeyKongLibGDX.PPM);
+//		b2body.createFixture(fDef).setUserData("barrel");
+		fDef.shape = shape;
+		b2body.createFixture(fDef).setUserData(this);
+	}
 
-		fDef.shape = shape2;
-		fDef.density = 1f;
-
-		b2body.createFixture(fDef);
-		shape2.dispose();
+	@Override
+	public void onHit() {
+		startExplosion();
+		
 	}
 
 }
