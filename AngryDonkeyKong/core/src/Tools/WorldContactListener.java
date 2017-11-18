@@ -13,7 +13,6 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
 import sprites.Barrel;
-import sprites.InteractiveTileObject;
 
 public class WorldContactListener implements ContactListener {
 
@@ -34,14 +33,15 @@ public class WorldContactListener implements ContactListener {
 		//
 		// }
 
-		if (fixA.getFilterData().categoryBits == AngryDonkeyKongLibGDX.PLAYER_BIT || fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.PLAYER_BIT) {
-			Fixture player = fixA.getUserData() == "player" ? fixA : fixB;
-			Fixture object = player == fixA ? fixB : fixA;
-
-			if(fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.BARREL_BIT) {
+		if (fixA.getFilterData().categoryBits == AngryDonkeyKongLibGDX.PLAYER_BIT
+				|| fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.PLAYER_BIT) {
+			if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.BARREL_BIT) {
 				Gdx.app.log("Player", " collided with Barrel");
-				((Barrel) fixB.getUserData()).startExplosion();	
-//				((Barrel) object.getUserData()).startExplosion();
+				((Barrel) fixB.getUserData()).startExplosion();
+			} else if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.KONG_BIT) {
+				Gdx.app.log("Player", " collided with AngryDonkeyKong");
+			} else if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.PRINCESS_BIT) {
+				Gdx.app.log("Player", " collided with Princess");
 			}
 		}
 

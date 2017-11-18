@@ -146,6 +146,13 @@ public class Kong extends Sprite{
 
 		fDef.shape = shape2;
 		fDef.density = 1f;
+		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.KONG_BIT;
+		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
+				AngryDonkeyKongLibGDX.BARREL_BIT | 
+				AngryDonkeyKongLibGDX.PLAYER_BIT|
+				AngryDonkeyKongLibGDX.KONG_BIT|
+				AngryDonkeyKongLibGDX.PRINCESS_BIT;
+
 
 		b2body.createFixture(fDef).setUserData("kong");
 		shape2.dispose();

@@ -157,7 +157,11 @@ public class Barrel extends Sprite{
         CircleShape shape = new CircleShape();
         shape.setRadius(6 / AngryDonkeyKongLibGDX.PPM);
 		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.BARREL_BIT;
-		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | AngryDonkeyKongLibGDX.BARREL_BIT | AngryDonkeyKongLibGDX.PLAYER_BIT;
+		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
+				AngryDonkeyKongLibGDX.BARREL_BIT | 
+				AngryDonkeyKongLibGDX.PLAYER_BIT|
+				AngryDonkeyKongLibGDX.KONG_BIT|
+				AngryDonkeyKongLibGDX.PRINCESS_BIT;
 
 //		b2body.createFixture(fDef).setUserData("barrel");
 		fDef.shape = shape;

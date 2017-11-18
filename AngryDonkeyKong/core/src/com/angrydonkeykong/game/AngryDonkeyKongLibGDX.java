@@ -19,6 +19,8 @@ public class AngryDonkeyKongLibGDX extends Game {
 	public static final short BARREL_BIT = 1;
 	public static final short BRICK_BIT = 2;
 	public static final short PLAYER_BIT = 4;
+	public static final short KONG_BIT = 8;
+	public static final short PRINCESS_BIT = 16;
 	
 	@Override
 	public void create () {

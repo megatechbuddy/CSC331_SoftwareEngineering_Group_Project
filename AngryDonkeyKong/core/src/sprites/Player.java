@@ -197,7 +197,11 @@ public class Player extends Sprite{
 		
 
 		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.PLAYER_BIT;
-		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | AngryDonkeyKongLibGDX.BARREL_BIT | AngryDonkeyKongLibGDX.PLAYER_BIT;
+		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
+				AngryDonkeyKongLibGDX.BARREL_BIT | 
+				AngryDonkeyKongLibGDX.PLAYER_BIT|
+				AngryDonkeyKongLibGDX.KONG_BIT|
+				AngryDonkeyKongLibGDX.PRINCESS_BIT;
 		b2body.createFixture(fDef).setUserData(this);
 	
 //		EdgeShape head = new EdgeShape();

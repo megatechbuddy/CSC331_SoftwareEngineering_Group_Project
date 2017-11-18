@@ -142,6 +142,12 @@ public class Princess extends Sprite{
 
 			fDef.shape = shape2;
 			fDef.density = 1f;
+			fDef.filter.categoryBits = AngryDonkeyKongLibGDX.PRINCESS_BIT;
+			fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
+					AngryDonkeyKongLibGDX.BARREL_BIT | 
+					AngryDonkeyKongLibGDX.PLAYER_BIT|
+					AngryDonkeyKongLibGDX.KONG_BIT|
+					AngryDonkeyKongLibGDX.PRINCESS_BIT;
 
 			b2body.createFixture(fDef);
 			shape2.dispose();
