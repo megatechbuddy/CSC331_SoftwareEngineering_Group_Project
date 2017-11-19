@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
+import scenes.Hud;
 import sprites.Barrel;
 
 public class WorldContactListener implements ContactListener {
@@ -38,10 +39,13 @@ public class WorldContactListener implements ContactListener {
 			if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.BARREL_BIT) {
 				Gdx.app.log("Player", " collided with Barrel");
 				((Barrel) fixB.getUserData()).startExplosion();
+				Hud.addScore(-500);
 			} else if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.KONG_BIT) {
 				Gdx.app.log("Player", " collided with AngryDonkeyKong");
+				Hud.addScore(-500);
 			} else if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.PRINCESS_BIT) {
 				Gdx.app.log("Player", " collided with Princess");
+				Hud.addScore(200);
 			}
 		}
 
