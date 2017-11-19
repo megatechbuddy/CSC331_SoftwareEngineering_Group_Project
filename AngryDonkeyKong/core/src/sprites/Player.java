@@ -38,6 +38,7 @@ public class Player extends Sprite{
 	public Body b2body;
 	private TextureRegion donkeyStand;
 	private boolean fireGun;
+	private boolean jumping;
 
 	public static int speed = 10;
 
@@ -53,6 +54,7 @@ public class Player extends Sprite{
 
 		// setters
 		fireGun = false;
+		jumping = false;
 
 		// Running frames
 		Array<TextureRegion> frames = new Array<TextureRegion>();
@@ -107,8 +109,10 @@ public class Player extends Sprite{
 		TextureRegion region;
 		switch (currentState) {
 			case JUMPING:
-				// region = playerJump.getKeyFrame(stateTimer);
+				//region = playerJump.getKeyFrame(stateTimer);
 				// break;
+				region = playerStand;
+				break;
 			case RUNNING:
 				//System.out.println("running");
 				region = playerRun.getKeyFrame(stateTimer, true);			
@@ -162,12 +166,16 @@ public class Player extends Sprite{
 //		} else if (b2body.getLinearVelocity().y > 0
 //				|| (b2body.getLinearVelocity().y < 0 && previousState == State.JUMPING)) {
 //			return State.JUMPING;
-//		} else if (b2body.getLinearVelocity().y < 0) {
-//			return State.FALLING;
-		} else if (b2body.getLinearVelocity().x != 0) {
+		} else if (b2body.getLinearVelocity().y < -0.1 && jumping == false) {
+			System.out.println("State: Falling, y velocity: " + b2body.getLinearVelocity().y);
+			return State.FALLING;
+		} else if (b2body.getLinearVelocity().x != 0 && jumping == false) {
 		//	System.out.println("running");
 			return State.RUNNING;
-		} else {
+		} else if (jumping) {
+			return State.JUMPING;
+		}
+		else {
 			return State.STANDING;
 		}
 	}
@@ -178,6 +186,10 @@ public class Player extends Sprite{
 		// debugging
 		// if(inputFiringState)
 		// System.out.println("GunFired " + inputFiringState);
+	}
+	
+	public void setStateJumping(boolean choice) {
+		jumping = choice;
 	}
 
 	public void defineSprite() {

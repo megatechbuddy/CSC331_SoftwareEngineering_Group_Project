@@ -26,6 +26,7 @@ import sprites.Barrel;
 import sprites.Bullet;
 import sprites.Kong;
 import sprites.Player;
+import sprites.Player.State;
 import sprites.Princess;
 //import sprites.ATeamMan;
 
@@ -42,6 +43,9 @@ public class PlayScreen implements Screen {
 	private TmxMapLoader mapLoader;
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer;
+	
+	//time
+	long time_startOfJump = 0;
 
 	// Box2d variables
 	private World world;
@@ -82,7 +86,7 @@ public class PlayScreen implements Screen {
 		renderer = new OrthogonalTiledMapRenderer(map, 1 / AngryDonkeyKongLibGDX.PPM);
 		gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
-		world = new World(new Vector2(0, -5000 / AngryDonkeyKongLibGDX.PPM), true);
+		world = new World(new Vector2(0, -3000 / AngryDonkeyKongLibGDX.PPM), true);
 		b2dr = new Box2DDebugRenderer();
 		
 		new B2WorldCreator(this);
@@ -111,10 +115,21 @@ public class PlayScreen implements Screen {
 
 		// variables for velocity
 		player_x_velocity = 0;
-		player_y_velocity = 0;
+		//player_y_velocity = 0;
+		if (player.getState() != State.JUMPING) {
+			player_y_velocity = 0;
+		}
 		// key inputs for movement
-		if (Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) {
-			player_y_velocity += 3;
+
+		//if (Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) {
+		//	player_y_velocity += 1;
+		//}
+		if (Gdx.input.isKeyJustPressed(Input.Keys.UP) || Gdx.input.isKeyJustPressed(Input.Keys.W)) {
+			if (player.getState() != State.JUMPING && player.getState() != State.FALLING ) {
+				player.setStateJumping(true);
+				time_startOfJump = System.currentTimeMillis();
+				System.out.println("Initiating a new jump. Time: " + time_startOfJump);
+			}
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
 			player_x_velocity += 2;
@@ -163,6 +178,15 @@ public class PlayScreen implements Screen {
 
 		// for debugging
 		// System.out.println(player.getX() + ", " + player.getY());
+		
+		//jumping
+		if(player.getState() == State.JUMPING) {
+			if ((System.currentTimeMillis() - time_startOfJump) > 150) {
+				player.setStateJumping(false);
+			}
+			//execute the jump
+			player_y_velocity = 2;
+		}
 
 		// set the velocity to the player
 		player.b2body.setLinearVelocity(player_x_velocity * Player.speed, player_y_velocity * Player.speed);
