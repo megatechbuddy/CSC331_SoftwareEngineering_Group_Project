@@ -147,7 +147,8 @@ public class Princess extends Sprite{
 					AngryDonkeyKongLibGDX.BARREL_BIT | 
 					AngryDonkeyKongLibGDX.PLAYER_BIT|
 					AngryDonkeyKongLibGDX.KONG_BIT|
-					AngryDonkeyKongLibGDX.PRINCESS_BIT;
+					AngryDonkeyKongLibGDX.PRINCESS_BIT|
+					AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
 
 			b2body.createFixture(fDef);
 			shape2.dispose();

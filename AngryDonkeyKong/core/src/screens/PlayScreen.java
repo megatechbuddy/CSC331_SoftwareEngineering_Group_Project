@@ -1,4 +1,4 @@
-//Author: Sean Benson, Kevin Singleton
+//Author: Sean Benson, Kevin Singleton, Minh Hua
 //Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
 
 package screens;
@@ -30,6 +30,7 @@ import sprites.Barrel;
 import sprites.Kong;
 import sprites.Player;
 import sprites.Princess;
+//import sprites.ATeamMan;
 
 public class PlayScreen implements Screen {
 	private AngryDonkeyKongLibGDX game;
@@ -55,6 +56,7 @@ public class PlayScreen implements Screen {
 	private Barrel barrel;
 	private Kong kong;
 	private Princess princess;
+//	private ATeamMan ateamman;
 
 	// velocities of the player
 	private float player_x_velocity = 0;
@@ -92,6 +94,7 @@ public class PlayScreen implements Screen {
 		barrel = new Barrel(this);
 		kong = new Kong(this);
 		princess = new Princess(this);
+//		ateamman = new ATeamMan(this);
 
 		// initialize variables
 		previousSpaceState = false;
@@ -172,6 +175,7 @@ public class PlayScreen implements Screen {
 		barrel.update(dt);
 		kong.update(dt);
 		princess.update(dt);
+//		ateamman.update(dt);
 		gamecam.update();
 		renderer.setView(gamecam);
 	}
@@ -197,6 +201,7 @@ public class PlayScreen implements Screen {
 		barrel.draw(game.batch);
 		kong.draw(game.batch);
 		princess.draw(game.batch);
+//		ateamman.draw(game.batch);
 		game.batch.end();
 
 		game.batch.setProjectionMatrix(hud.stage.getCamera().combined);

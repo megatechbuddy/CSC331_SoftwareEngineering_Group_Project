@@ -1,4 +1,4 @@
-//Author: Sean Benson 
+//Author: Sean Benson , Minh Hua
 //Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
 
 package com.angrydonkeykong.game;
@@ -21,6 +21,7 @@ public class AngryDonkeyKongLibGDX extends Game {
 	public static final short PLAYER_BIT = 4;
 	public static final short KONG_BIT = 8;
 	public static final short PRINCESS_BIT = 16;
+	public static final short ATEAMMAN_BIT = 32;
 	
 	@Override
 	public void create () {

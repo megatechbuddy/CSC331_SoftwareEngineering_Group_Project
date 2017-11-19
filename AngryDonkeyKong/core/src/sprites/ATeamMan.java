@@ -1,9 +1,10 @@
-//Author: Sean Benson & Keven Singleton
+//Author: Minh Hua
 //Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
 
 package sprites;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -21,11 +22,10 @@ import com.badlogic.gdx.utils.Array;
 import screens.PlayScreen;
 import sprites.Player.State;
 
-public class Barrel extends Sprite{
+public class ATeamMan extends Sprite{
 	public enum State {
 		STILL, ROLLING, EXPLODING
-	}
-
+	};
 
 	public World world;
 	public Body b2body;
@@ -36,15 +36,14 @@ public class Barrel extends Sprite{
 	private Animation<TextureRegion> barrellExplode;
 	private boolean runningRight;
 	private float stateTimer;
-	private TextureRegion donkeyStand;
+	private TextureRegion ATeamManStand;
 
 	private boolean startExplosion;
 	public static int speed = 20;
 
-	public Barrel(PlayScreen screen) {
-		super(screen.getAtlas().findRegion("Barrel_A"));
+	public ATeamMan(PlayScreen screen) {
+		super(screen.getAtlas().findRegion("ateamman sprite"));
 		this.world = screen.getWorld();
-		
 
 		// change picture animation
 		currentState = State.STILL;
@@ -57,27 +56,18 @@ public class Barrel extends Sprite{
 
 		// Rolling frames
 		Array<TextureRegion> frames = new Array<TextureRegion>();
-		frames.add(screen.getAtlas().findRegion("Barrel_A"));
-		frames.add(screen.getAtlas().findRegion("Barrel_B"));
-		frames.add(screen.getAtlas().findRegion("Barrel_C"));
-		frames.add(screen.getAtlas().findRegion("Barrel_D"));
-		frames.add(screen.getAtlas().findRegion("Barrel_E"));
-		frames.add(screen.getAtlas().findRegion("Barrel_F"));
-		frames.add(screen.getAtlas().findRegion("Barrel_G"));
-		frames.add(screen.getAtlas().findRegion("Barrel_H"));
+		frames.add(screen.getAtlas().findRegion("ateamman sprite"));
 
 		barrellRoll = new Animation(0.1f, frames);
 		frames.clear();
 
 		// StartExplosion Frames
-		frames.add(screen.getAtlas().findRegion("Explosion_a"));
-		frames.add(screen.getAtlas().findRegion("Explosion_b"));
-		frames.add(screen.getAtlas().findRegion("Explosion_c"));
+		frames.add(screen.getAtlas().findRegion("ateamman sprite"));
 
 		barrellExplode = new Animation(0.4f, frames);
 		frames.clear();
 
-		playerStand = new TextureRegion(screen.getAtlas().findRegion("Barrel_A"));
+		playerStand = new TextureRegion(screen.getAtlas().findRegion("ateamman sprite"));
 
 		// show picture
 		defineSprite();
@@ -142,21 +132,21 @@ public class Barrel extends Sprite{
 		}
 	}
 
-	public void startExplosion() {
-		startExplosion = true;
-	}
 	
 	public void defineSprite() {
 		BodyDef bdef = new BodyDef();
-		Vector2 start_position = new Vector2(20, 13);
+		Vector2 start_position = new Vector2(13, 7);
 		bdef.position.set(start_position);
-        bdef.type = BodyDef.BodyType.DynamicBody;
 		b2body = world.createBody(bdef);
 
 		FixtureDef fDef = new FixtureDef();
-        CircleShape shape = new CircleShape();
-        shape.setRadius(6 / AngryDonkeyKongLibGDX.PPM);
-		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.BARREL_BIT;
+		PolygonShape shape2 = new PolygonShape();
+
+		shape2.setAsBox(10 / AngryDonkeyKongLibGDX.PPM, 10 / AngryDonkeyKongLibGDX.PPM);
+
+		fDef.shape = shape2;
+		fDef.density = 1f;
+		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
 		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
 				AngryDonkeyKongLibGDX.BARREL_BIT | 
 				AngryDonkeyKongLibGDX.PLAYER_BIT|
@@ -164,8 +154,8 @@ public class Barrel extends Sprite{
 				AngryDonkeyKongLibGDX.PRINCESS_BIT|
 				AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
 
-//		b2body.createFixture(fDef).setUserData("barrel");
-		fDef.shape = shape;
+
 		b2body.createFixture(fDef).setUserData(this);
+		shape2.dispose();
 	}
 }
