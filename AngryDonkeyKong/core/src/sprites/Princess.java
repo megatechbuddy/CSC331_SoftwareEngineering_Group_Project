@@ -38,7 +38,7 @@ public class Princess extends Sprite{
 		public static int speed = 20;
 
 		public Princess(PlayScreen screen) {
-			super(screen.getAtlas().findRegion("KongFront"));
+			super(screen.getAtlas().findRegion("Lady"));
 			this.world = screen.getWorld();
 
 			// change picture animation
@@ -52,18 +52,18 @@ public class Princess extends Sprite{
 
 			// Rolling frames
 			Array<TextureRegion> frames = new Array<TextureRegion>();
-			frames.add(screen.getAtlas().findRegion("KongFront"));
+			frames.add(screen.getAtlas().findRegion("Lady"));
 
 			barrellRoll = new Animation(0.1f, frames);
 			frames.clear();
 
 			// StartExplosion Frames
-			frames.add(screen.getAtlas().findRegion("KongFront"));
+			frames.add(screen.getAtlas().findRegion("Lady"));
 
 			barrellExplode = new Animation(0.4f, frames);
 			frames.clear();
 
-			playerStand = new TextureRegion(screen.getAtlas().findRegion("KongFront"));
+			playerStand = new TextureRegion(screen.getAtlas().findRegion("Lady"));
 
 			// show picture
 			defineSprite();
