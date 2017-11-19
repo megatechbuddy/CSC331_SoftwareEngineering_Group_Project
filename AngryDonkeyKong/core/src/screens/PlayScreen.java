@@ -23,6 +23,7 @@ import Tools.B2WorldCreator;
 import Tools.WorldContactListener;
 import scenes.Hud;
 import sprites.Barrel;
+import sprites.Bullet;
 import sprites.Kong;
 import sprites.Player;
 import sprites.Princess;
@@ -52,6 +53,7 @@ public class PlayScreen implements Screen {
 	private Barrel barrel;
 	private Kong kong;
 	private Princess princess;
+	private Bullet bullet;
 //	private ATeamMan ateamman;
 
 	// velocities of the player
@@ -90,6 +92,7 @@ public class PlayScreen implements Screen {
 		barrel = new Barrel(this);
 		kong = new Kong(this);
 		princess = new Princess(this);
+		bullet = new Bullet(this);
 //		ateamman = new ATeamMan(this);
 
 		// initialize variables
@@ -111,14 +114,14 @@ public class PlayScreen implements Screen {
 		player_y_velocity = 0;
 		// key inputs for movement
 		if (Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) {
-			player_y_velocity += 1;
+			player_y_velocity += 3;
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
-			player_x_velocity += 1;
+			player_x_velocity += 2;
 			player.faceRight();
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
-			player_x_velocity -= 1;
+			player_x_velocity -= 2;
 			player.faceLeft();
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.E)) {
@@ -136,24 +139,27 @@ public class PlayScreen implements Screen {
 		} else if (!Gdx.input.isKeyPressed(Input.Keys.SPACE) && previousSpaceState) {
 			// stop gun
 			player.setStateFireGun();
-
+			
+			//update bullet
+			
+			
 			// update the state recording variable
 			previousSpaceState = false;
 		}
 
 		// put map boundaries x
-		if (player.getX() < 0 && player_x_velocity < 0) {
-			player_x_velocity = 0;
-		} else if (player.getX() > 39 && player_x_velocity > 0) {
-			player_x_velocity = 0;
-		}
-
-		// put map boundaries y
-		if (player.getY() < 0 && player_y_velocity < 0) {
-			player_y_velocity = 0;
-		} else if (player.getY() > 18 && player_y_velocity > 0) {
-			player_y_velocity = 0;
-		}
+//		if (player.getX() < 0 && player_x_velocity < 0) {
+//			player_x_velocity = 0;
+//		} else if (player.getX() > 39 && player_x_velocity > 0) {
+//			player_x_velocity = 0;
+//		}
+//
+//		// put map boundaries y
+//		if (player.getY() < 0 && player_y_velocity < 0) {
+//			player_y_velocity = 0;
+//		} else if (player.getY() > 18 && player_y_velocity > 0) {
+//			player_y_velocity = 0;
+//		}
 
 		// for debugging
 		// System.out.println(player.getX() + ", " + player.getY());
@@ -171,6 +177,7 @@ public class PlayScreen implements Screen {
 		barrel.update(dt);
 		kong.update(dt);
 		princess.update(dt);
+		bullet.update(dt);
 //		ateamman.update(dt);
 		hud.update(dt);
 		gamecam.update();
@@ -198,6 +205,7 @@ public class PlayScreen implements Screen {
 		barrel.draw(game.batch);
 		kong.draw(game.batch);
 		princess.draw(game.batch);
+		bullet.draw(game.batch);
 //		ateamman.draw(game.batch);
 		game.batch.end();
 

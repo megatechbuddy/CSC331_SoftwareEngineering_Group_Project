@@ -11,8 +11,8 @@ import screens.PlayScreen;
 
 public class AngryDonkeyKongLibGDX extends Game {
 	public SpriteBatch batch;
-	public static final int V_WIDTH = 408;
-	public static final int V_HEIGHT = 200;
+	public static final int V_WIDTH = 608;
+	public static final int V_HEIGHT = 500;
 	public static final float PPM = 10;
 	
 	//Box2D Collision Bits
@@ -22,6 +22,7 @@ public class AngryDonkeyKongLibGDX extends Game {
 	public static final short KONG_BIT = 8;
 	public static final short PRINCESS_BIT = 16;
 	public static final short ATEAMMAN_BIT = 32;
+	public static final short BULLET_BIT = 64;
 	
 	@Override
 	public void create () {
