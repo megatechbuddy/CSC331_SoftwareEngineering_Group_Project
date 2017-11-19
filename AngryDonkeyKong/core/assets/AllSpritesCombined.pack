@@ -5,245 +5,245 @@ filter: Nearest,Nearest
 repeat: none
 FireGun_a
   rotate: false
-  xy: 1, 123
+  xy: 1, 127
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 FireGun_b
   rotate: false
-  xy: 1, 1
+  xy: 1, 5
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 FireGun_c
   rotate: false
-  xy: 123, 123
+  xy: 123, 127
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 FireGun_d
   rotate: false
-  xy: 123, 1
+  xy: 123, 5
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 FireGun_e
   rotate: false
-  xy: 245, 123
+  xy: 245, 127
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 FireGun_f
   rotate: false
-  xy: 245, 1
+  xy: 245, 5
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 FireGun_g
   rotate: false
-  xy: 367, 123
+  xy: 367, 127
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 Running_a
   rotate: false
-  xy: 367, 1
+  xy: 367, 5
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
 Running_b
   rotate: false
-  xy: 489, 123
+  xy: 489, 127
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
 Running_c
   rotate: false
-  xy: 434, 1
+  xy: 434, 5
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
 Running_d
   rotate: false
-  xy: 556, 123
+  xy: 556, 127
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
 Running_e
   rotate: false
-  xy: 501, 1
+  xy: 501, 5
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
 Running_f
   rotate: false
-  xy: 623, 123
+  xy: 623, 127
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
 Running_g
   rotate: false
-  xy: 568, 1
+  xy: 568, 5
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
 Running_h
   rotate: false
-  xy: 690, 123
+  xy: 690, 127
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
 Running_i
   rotate: false
-  xy: 635, 1
+  xy: 635, 5
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
 Running_j
   rotate: false
-  xy: 757, 123
+  xy: 757, 127
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
 Running_k
   rotate: false
-  xy: 702, 1
+  xy: 702, 5
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
 Running_l
   rotate: false
-  xy: 824, 123
+  xy: 824, 127
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
 Running_m
   rotate: false
-  xy: 769, 1
+  xy: 769, 5
   size: 65, 120
   orig: 65, 120
   offset: 0, 0
   index: -1
 KongFront
   rotate: false
-  xy: 891, 199
-  size: 52, 44
-  orig: 52, 44
+  xy: 891, 213
+  size: 42, 34
+  orig: 42, 34
   offset: 0, 0
   index: -1
 Barrel_A
   rotate: false
-  xy: 836, 87
+  xy: 836, 91
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Barrel_B
   rotate: false
-  xy: 891, 163
+  xy: 891, 177
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Barrel_C
   rotate: false
-  xy: 945, 209
+  xy: 935, 213
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Barrel_D
   rotate: false
-  xy: 836, 51
+  xy: 836, 55
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Barrel_E
   rotate: false
-  xy: 891, 127
+  xy: 891, 141
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Barrel_F
   rotate: false
-  xy: 981, 209
+  xy: 927, 177
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Barrel_G
   rotate: false
-  xy: 836, 15
+  xy: 971, 213
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Barrel_H
   rotate: false
-  xy: 872, 87
+  xy: 836, 19
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Explosion_a
   rotate: false
-  xy: 872, 51
+  xy: 927, 141
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Explosion_b
   rotate: false
-  xy: 872, 15
+  xy: 963, 177
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 Explosion_c
   rotate: false
-  xy: 927, 163
+  xy: 963, 141
   size: 34, 34
   orig: 34, 34
   offset: 0, 0
   index: -1
 ateamman sprite
   rotate: false
-  xy: 927, 129
+  xy: 872, 93
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 Lady
   rotate: false
-  xy: 908, 100
+  xy: 872, 66
   size: 18, 25
   orig: 18, 25
   offset: 0, 0
   index: -1
 Bullet
   rotate: false
-  xy: 891, 123
+  xy: 1, 1
   size: 4, 2
   orig: 4, 2
   offset: 0, 0

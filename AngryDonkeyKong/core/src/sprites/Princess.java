@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -67,7 +68,7 @@ public class Princess extends Sprite{
 
 			// show picture
 			defineSprite();
-			setBounds(0, 0, 16 / AngryDonkeyKongLibGDX.PPM, 16 / AngryDonkeyKongLibGDX.PPM);
+			setBounds(0, 0, 32 / AngryDonkeyKongLibGDX.PPM, 32 / AngryDonkeyKongLibGDX.PPM);
 			setRegion(playerStand);
 			
 			
@@ -131,16 +132,16 @@ public class Princess extends Sprite{
 		
 		public void defineSprite() {
 			BodyDef bdef = new BodyDef();
-			Vector2 start_position = new Vector2(5, 13);
+			Vector2 start_position = new Vector2(17, 44);
+			bdef.type = BodyDef.BodyType.DynamicBody;
 			bdef.position.set(start_position);
 			b2body = world.createBody(bdef);
 
 			FixtureDef fDef = new FixtureDef();
-			PolygonShape shape2 = new PolygonShape();
 
-			shape2.setAsBox(10 / AngryDonkeyKongLibGDX.PPM, 10 / AngryDonkeyKongLibGDX.PPM);
-
-			fDef.shape = shape2;
+	        CircleShape shape = new CircleShape();
+	        shape.setRadius(16 / AngryDonkeyKongLibGDX.PPM);
+			fDef.shape = shape;
 			fDef.density = 1f;
 			fDef.filter.categoryBits = AngryDonkeyKongLibGDX.PRINCESS_BIT;
 			fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
@@ -151,7 +152,7 @@ public class Princess extends Sprite{
 					AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
 
 			b2body.createFixture(fDef);
-			shape2.dispose();
+			shape.dispose();
 		}
 
 	}

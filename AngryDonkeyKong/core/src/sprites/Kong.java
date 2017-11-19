@@ -71,7 +71,7 @@ public class Kong extends Sprite{
 
 		// show picture
 		defineSprite();
-		setBounds(0, 0, 16 / AngryDonkeyKongLibGDX.PPM, 16 / AngryDonkeyKongLibGDX.PPM);
+		setBounds(0, 0, 64 / AngryDonkeyKongLibGDX.PPM, 64 / AngryDonkeyKongLibGDX.PPM);
 		setRegion(playerStand);
 		
 		
@@ -135,16 +135,16 @@ public class Kong extends Sprite{
 	
 	public void defineSprite() {
 		BodyDef bdef = new BodyDef();
-		Vector2 start_position = new Vector2(10, 13);
+		Vector2 start_position = new Vector2(5, 44);
+		bdef.type = BodyDef.BodyType.DynamicBody;
 		bdef.position.set(start_position);
 		b2body = world.createBody(bdef);
 
 		FixtureDef fDef = new FixtureDef();
-		PolygonShape shape2 = new PolygonShape();
+        CircleShape shape = new CircleShape();
+        shape.setRadius(32/ AngryDonkeyKongLibGDX.PPM);
 
-		shape2.setAsBox(10 / AngryDonkeyKongLibGDX.PPM, 10 / AngryDonkeyKongLibGDX.PPM);
-
-		fDef.shape = shape2;
+		fDef.shape = shape;
 		fDef.density = 1f;
 		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.KONG_BIT;
 		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
@@ -156,6 +156,6 @@ public class Kong extends Sprite{
 
 
 		b2body.createFixture(fDef).setUserData("kong");
-		shape2.dispose();
+		shape.dispose();
 	}
 }

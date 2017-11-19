@@ -188,11 +188,9 @@ public class Player extends Sprite{
 
 		FixtureDef fDef = new FixtureDef();
 
-		PolygonShape shape2 = new PolygonShape();
-
-		shape2.setAsBox(8 / AngryDonkeyKongLibGDX.PPM, 8 / AngryDonkeyKongLibGDX.PPM);
-		
-		fDef.shape = shape2;
+        CircleShape shape = new CircleShape();
+        shape.setRadius(6 / AngryDonkeyKongLibGDX.PPM);
+		fDef.shape = shape;
 		fDef.density = 1f;
 		
 
@@ -213,6 +211,6 @@ public class Player extends Sprite{
 //		b2body.createFixture(fDef).setUserData("head");
 		
 		// Shape is the only disposable of the lot, so get rid of it
-		shape2.dispose();
+		shape.dispose();
 	}
 }

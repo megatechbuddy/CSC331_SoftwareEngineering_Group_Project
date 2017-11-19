@@ -39,7 +39,7 @@ public class WorldContactListener implements ContactListener {
 			if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.BARREL_BIT) {
 				Gdx.app.log("Player", " collided with Barrel");
 				((Barrel) fixB.getUserData()).startExplosion();
-				Hud.addScore(-500);
+				Hud.addScore(500);
 			} else if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.KONG_BIT) {
 				Gdx.app.log("Player", " collided with AngryDonkeyKong");
 				Hud.addScore(-500);
