@@ -1,4 +1,4 @@
-//Author: Sean Benson & Keven
+//Author: Sean Benson & Keven Singleton
 //Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
 
 package sprites;

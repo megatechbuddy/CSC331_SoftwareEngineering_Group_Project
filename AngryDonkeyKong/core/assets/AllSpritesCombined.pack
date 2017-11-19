@@ -227,3 +227,17 @@ Explosion_c
   orig: 34, 34
   offset: 0, 0
   index: -1
+ateamman sprite
+  rotate: false
+  xy: 927, 129
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+Lady
+  rotate: false
+  xy: 908, 100
+  size: 18, 25
+  orig: 18, 25
+  offset: 0, 0
+  index: -1
