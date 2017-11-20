@@ -94,7 +94,7 @@ public class Player extends Sprite{
 
 		// show picture
 		defineSprite();
-		setBounds(0, 0, 16 / AngryDonkeyKongLibGDX.PPM, 16 / AngryDonkeyKongLibGDX.PPM);
+		setBounds(0, 0, 32 / AngryDonkeyKongLibGDX.PPM, 32 / AngryDonkeyKongLibGDX.PPM);
 		setRegion(playerStand);
 	}
 
@@ -201,7 +201,7 @@ public class Player extends Sprite{
 		FixtureDef fDef = new FixtureDef();
 
         CircleShape shape = new CircleShape();
-        shape.setRadius(6 / AngryDonkeyKongLibGDX.PPM);
+        shape.setRadius(13 / AngryDonkeyKongLibGDX.PPM);
 		fDef.shape = shape;
 		fDef.density = 1f;
 		
