@@ -42,8 +42,8 @@
   <object id="52" x="559.875" y="771.875" width="48.375" height="15.875"/>
   <object id="53" x="512.792" y="704.667" width="47.75" height="16"/>
   <object id="57" x="512.542" y="544.417" width="48" height="16"/>
-  <object id="58" x="16.7917" y="530.792" width="111.625" height="15.75"/>
-  <object id="59" x="16.5417" y="690.792" width="112" height="15.625"/>
+  <object id="58" x="0.7917" y="530.792" width="127.625" height="15.75"/>
+  <object id="59" x="0.5417" y="690.792" width="128" height="15.625"/>
   <object id="60" x="544.333" y="381.666" width="31.3333" height="15.3333"/>
   <object id="64" x="528.25" y="449.583" width="80" height="15.75"/>
   <object id="72" x="512" y="774" width="47.6364" height="15.8182"/>
