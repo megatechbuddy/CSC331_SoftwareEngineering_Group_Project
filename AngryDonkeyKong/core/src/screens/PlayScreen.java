@@ -33,6 +33,10 @@ import sprites.Princess;
 public class PlayScreen implements Screen {
 	private AngryDonkeyKongLibGDX game;
 
+	// DEBUG MODE
+	private boolean debug_mode = true;
+	
+	
 	// TODO: Switch from home screen texture to game format.
 	// private Texture img;
 
@@ -87,7 +91,10 @@ public class PlayScreen implements Screen {
 		gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
 		world = new World(new Vector2(0, -3000 / AngryDonkeyKongLibGDX.PPM), true);
-		b2dr = new Box2DDebugRenderer();
+		if(debug_mode == true) {
+			b2dr = new Box2DDebugRenderer();
+		}
+		//b2dr = new Box2DDebugRenderer();
 
 		new B2WorldCreator(this);
 
@@ -233,7 +240,10 @@ public class PlayScreen implements Screen {
 
 		renderer.render();
 
-		b2dr.render(world, gamecam.combined);
+		if(debug_mode == true) {
+			b2dr.render(world, gamecam.combined);
+		}
+		//b2dr.render(world, gamecam.combined);
 		game.batch.setProjectionMatrix(gamecam.combined);
 		game.batch.begin();
 		// game.batch.draw(getAtlas().getTextures().first(), player.getX() -

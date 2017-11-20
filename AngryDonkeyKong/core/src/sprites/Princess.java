@@ -132,7 +132,7 @@ public class Princess extends Sprite{
 		
 		public void defineSprite() {
 			BodyDef bdef = new BodyDef();
-			Vector2 start_position = new Vector2(17, 44);
+			Vector2 start_position = new Vector2(11, 52);
 			bdef.type = BodyDef.BodyType.DynamicBody;
 			bdef.position.set(start_position);
 			b2body = world.createBody(bdef);
