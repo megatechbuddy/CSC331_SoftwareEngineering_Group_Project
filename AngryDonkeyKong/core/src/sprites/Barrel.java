@@ -78,7 +78,7 @@ public class Barrel extends Sprite{
 
 		// show picture
 		defineSprite();
-		setBounds(0, 0, 16 / AngryDonkeyKongLibGDX.PPM, 16 / AngryDonkeyKongLibGDX.PPM);
+		setBounds(0, 0, 25 / AngryDonkeyKongLibGDX.PPM, 25 / AngryDonkeyKongLibGDX.PPM);
 		setRegion(playerStand);
 		
 		
@@ -152,7 +152,7 @@ public class Barrel extends Sprite{
 
 		FixtureDef fDef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(6 / AngryDonkeyKongLibGDX.PPM);
+        shape.setRadius(10 / AngryDonkeyKongLibGDX.PPM);
 		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.BARREL_BIT;
 		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
 				AngryDonkeyKongLibGDX.BARREL_BIT | 

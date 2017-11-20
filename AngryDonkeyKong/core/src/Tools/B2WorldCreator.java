@@ -15,6 +15,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import screens.PlayScreen;
 import sprites.tileObjects.Brick;
+import sprites.tileObjects.Ladder;
 
 public class B2WorldCreator {
 
@@ -81,6 +82,11 @@ public class B2WorldCreator {
 		// create brick bodies/fixtures
 		for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
 			new Brick(screen, object);
+		}
+		
+		// create ladders bodies/fixtures
+		for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
+			new Ladder(screen, object);
 		}
 		//
 		// // create all goombas
