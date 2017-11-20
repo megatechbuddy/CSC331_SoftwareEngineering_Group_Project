@@ -34,7 +34,7 @@ public class PlayScreen implements Screen {
 	private AngryDonkeyKongLibGDX game;
 
 	// DEBUG MODE
-	private boolean debug_mode = true;
+	private boolean debug_mode = false;
 	
 	
 	// TODO: Switch from home screen texture to game format.
@@ -196,9 +196,9 @@ public class PlayScreen implements Screen {
 //		System.out.println("x: " + barrel.getX());
 		
 		//change direction
-		if (barrel.getX() >= 59) {
+		if (barrel.getX() >= 58) {
 			barrelState = false;
-		} else if (barrel.getX() <= 0) {
+		} else if (barrel.getX() <= 1) {
 			barrelState = true;
 		}
 		
