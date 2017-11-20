@@ -9,7 +9,7 @@
  </layer>
  <layer name="Ground" width="38" height="50">
   <data encoding="base64" compression="zlib">
-   eJztl9sOgjAQRPdBRAXEawxe8NUP8P+/TZtAMi5brq1pyE5yYk20WcrstCVSqVQqlUqlmr/e7DMUaV3DFFJdi56EpBDWTZLW1VRff7VxAPbADsiBLZBVpBUuZdY1qdgAa2AFxMCyIvpy9VBXSPO4nm8OdaWMDKi9e4ZxbgF7YM+oe6aAMUrqtYixBGIB9PcDxtgDG0YigJrD+/2nQlovzOqCfef5LeW4lOd1pmM/YL9gH9kkeQ4xvnySPcelPOeZfqfffsE+mnKWmvp+j57n96Wxdfl+njHzG2+eqD3vkTF5L/Ubakje36iZ9cbf3P8870sanvdGfddU+l2Xv4fM7+p/vhVKXdxv3INT8l46x7/IXd5zMOdL6s57PMe7zPs2uXjvPrwTal0u5KMunllddwG+J5ieuVBzH3Bx37btD7a7gLQP8HP/BzlZGKo=
+   eJztl1mugkAQRetDQBnEMQYH/HUB7n9t2gkk16KYu02H1ElOHia+TtlUXRoiRVEURVGU5fNmf31B6xqHT3WtBuoTPuybhNbVZGh/dXkA9+AOzMEtmFWmlTYx+5pUxuAGXIMRGFYGX68O6vJpHdvrLaGulJmBde+e4TpvEWdgz6xnpoBrRJq1gBmCkSD29wOucQZiZiKILOH+/hOf9guzumCfeX5LOS7leZ3pOA84LzhHbUg9h5q+fFJ7jkt5zjP9Tr/zgnM05yw19/4eHa/viql1uf49U9Y3vXmi7rxHp+S9NG/ImLy/UTPrTX/z/ud5X9L4vDcM3VPpe339PWZ9W//nGl/q4v3Ge3BO3kvn+BfZy3su5nxJ/XmP53ibed+Fjfvuond8rcsGLurimdX3LsCfCWZmLtR8DiA23r2HvAtIzwF+7v8AMmkYng==
   </data>
  </layer>
  <objectgroup name="Ladders">
@@ -38,7 +38,7 @@
   <object id="20" x="608.5" y="167.5" width="18" height="647"/>
   <object id="21" x="528.917" y="610.167" width="78.75" height="16.25"/>
   <object id="26" x="-5.68434e-14" y="367.333" width="271.5" height="15.6667"/>
-  <object id="47" x="-2.56818" y="784" width="323.818" height="16"/>
+  <object id="47" x="48.7652" y="784" width="272.485" height="16"/>
   <object id="52" x="559.875" y="771.875" width="48.375" height="15.875"/>
   <object id="53" x="512.792" y="704.667" width="47.75" height="16"/>
   <object id="57" x="512.542" y="544.417" width="48" height="16"/>
