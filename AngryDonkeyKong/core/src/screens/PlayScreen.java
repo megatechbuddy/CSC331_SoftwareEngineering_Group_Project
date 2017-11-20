@@ -43,8 +43,8 @@ public class PlayScreen implements Screen {
 	private TmxMapLoader mapLoader;
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer;
-	
-	//time
+
+	// time
 	long time_startOfJump = 0;
 
 	// Box2d variables
@@ -58,7 +58,7 @@ public class PlayScreen implements Screen {
 	private Kong kong;
 	private Princess princess;
 	private Bullet bullet;
-//	private ATeamMan ateamman;
+	// private ATeamMan ateamman;
 
 	// velocities of the player
 	private float player_x_velocity = 0;
@@ -88,7 +88,7 @@ public class PlayScreen implements Screen {
 
 		world = new World(new Vector2(0, -3000 / AngryDonkeyKongLibGDX.PPM), true);
 		b2dr = new Box2DDebugRenderer();
-		
+
 		new B2WorldCreator(this);
 
 		// create mario in our game world
@@ -97,7 +97,7 @@ public class PlayScreen implements Screen {
 		kong = new Kong(this);
 		princess = new Princess(this);
 		bullet = new Bullet(this);
-//		ateamman = new ATeamMan(this);
+		// ateamman = new ATeamMan(this);
 
 		// initialize variables
 		previousSpaceState = false;
@@ -115,17 +115,18 @@ public class PlayScreen implements Screen {
 
 		// variables for velocity
 		player_x_velocity = 0;
-		//player_y_velocity = 0;
+		// player_y_velocity = 0;
 		if (player.getState() != State.JUMPING) {
 			player_y_velocity = 0;
 		}
 		// key inputs for movement
 
-		//if (Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) {
-		//	player_y_velocity += 1;
-		//}
+		// if (Gdx.input.isKeyPressed(Input.Keys.UP) ||
+		// Gdx.input.isKeyPressed(Input.Keys.W)) {
+		// player_y_velocity += 1;
+		// }
 		if (Gdx.input.isKeyJustPressed(Input.Keys.UP) || Gdx.input.isKeyJustPressed(Input.Keys.W)) {
-			if (player.getState() != State.JUMPING && player.getState() != State.FALLING ) {
+			if (player.getState() != State.JUMPING && player.getState() != State.FALLING) {
 				player.setStateJumping(true);
 				time_startOfJump = System.currentTimeMillis();
 				System.out.println("Initiating a new jump. Time: " + time_startOfJump);
@@ -140,7 +141,7 @@ public class PlayScreen implements Screen {
 			player.faceLeft();
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.E)) {
-			//barrel.startExplosion();
+			// barrel.startExplosion();
 		}
 
 		// key inputs for weapons
@@ -149,42 +150,30 @@ public class PlayScreen implements Screen {
 			player.setStateFireGun();
 			// System.out.println("firing gun now");
 
+			// bullet
+			bullet.b2body.setLinearVelocity(100, 0);
+
 			// update the state recording variable
 			previousSpaceState = true;
 		} else if (!Gdx.input.isKeyPressed(Input.Keys.SPACE) && previousSpaceState) {
 			// stop gun
 			player.setStateFireGun();
-			
-			//update bullet
-			
-			
+
+			// update bullet
+
 			// update the state recording variable
 			previousSpaceState = false;
 		}
 
-		// put map boundaries x
-//		if (player.getX() < 0 && player_x_velocity < 0) {
-//			player_x_velocity = 0;
-//		} else if (player.getX() > 39 && player_x_velocity > 0) {
-//			player_x_velocity = 0;
-//		}
-//
-//		// put map boundaries y
-//		if (player.getY() < 0 && player_y_velocity < 0) {
-//			player_y_velocity = 0;
-//		} else if (player.getY() > 18 && player_y_velocity > 0) {
-//			player_y_velocity = 0;
-//		}
-
 		// for debugging
 		// System.out.println(player.getX() + ", " + player.getY());
-		
-		//jumping
-		if(player.getState() == State.JUMPING) {
+
+		// jumping
+		if (player.getState() == State.JUMPING) {
 			if ((System.currentTimeMillis() - time_startOfJump) > 150) {
 				player.setStateJumping(false);
 			}
-			//execute the jump
+			// execute the jump
 			player_y_velocity = 2;
 		}
 
@@ -193,8 +182,34 @@ public class PlayScreen implements Screen {
 
 	}
 
+	boolean barrelState = true;
+
+	public void moveBarrel() {
+		//debuging
+//		System.out.println("x: " + barrel.getX());
+		
+		//change direction
+		if (barrel.getX() >= 59) {
+			barrelState = false;
+		} else if (barrel.getX() <= 0) {
+			barrelState = true;
+		}
+		
+		//move the barrel here
+		if (barrelState) {
+			// right
+			barrel.b2body.setLinearVelocity(20, barrel.b2body.getLinearVelocity().y);
+		} else {
+			// left
+			barrel.b2body.setLinearVelocity(-20, barrel.b2body.getLinearVelocity().y);
+		}
+	}
+
 	public void update(float dt) {
 		handleInput(dt);
+		
+		//update barrels
+		moveBarrel();
 
 		world.step(1 / 60f, 6, 2);
 		player.update(dt);
@@ -202,7 +217,7 @@ public class PlayScreen implements Screen {
 		kong.update(dt);
 		princess.update(dt);
 		bullet.update(dt);
-//		ateamman.update(dt);
+		// ateamman.update(dt);
 		hud.update(dt);
 		gamecam.update();
 		renderer.setView(gamecam);
@@ -230,7 +245,7 @@ public class PlayScreen implements Screen {
 		kong.draw(game.batch);
 		princess.draw(game.batch);
 		bullet.draw(game.batch);
-//		ateamman.draw(game.batch);
+		// ateamman.draw(game.batch);
 		game.batch.end();
 
 		game.batch.setProjectionMatrix(hud.stage.getCamera().combined);

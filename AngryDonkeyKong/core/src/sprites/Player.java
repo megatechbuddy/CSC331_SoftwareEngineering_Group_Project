@@ -167,7 +167,7 @@ public class Player extends Sprite{
 //				|| (b2body.getLinearVelocity().y < 0 && previousState == State.JUMPING)) {
 //			return State.JUMPING;
 		} else if (b2body.getLinearVelocity().y < -0.1 && jumping == false) {
-			System.out.println("State: Falling, y velocity: " + b2body.getLinearVelocity().y);
+//			System.out.println("State: Falling, y velocity: " + b2body.getLinearVelocity().y);
 			return State.FALLING;
 		} else if (b2body.getLinearVelocity().x != 0 && jumping == false) {
 		//	System.out.println("running");

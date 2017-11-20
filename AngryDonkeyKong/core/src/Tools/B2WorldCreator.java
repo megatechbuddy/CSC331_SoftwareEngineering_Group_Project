@@ -79,7 +79,7 @@ public class B2WorldCreator {
 //		}
 		
 		// create brick bodies/fixtures
-		for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
+		for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
 			new Brick(screen, object);
 		}
 		//
