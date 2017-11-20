@@ -32,7 +32,7 @@
   <object id="146" x="272" y="353.5" width="16" height="104.5"/>
   <object id="147" x="111.75" y="288" width="16.25" height="79.5"/>
  </objectgroup>
- <objectgroup name="Platform" visible="0">
+ <objectgroup name="Platform">
   <object id="5" x="630" y="773" width="1"/>
   <object id="16" x="-18" y="156.5" width="18" height="647"/>
   <object id="20" x="608.5" y="167.5" width="18" height="647"/>
