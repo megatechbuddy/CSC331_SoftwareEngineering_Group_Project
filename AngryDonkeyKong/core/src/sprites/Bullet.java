@@ -15,9 +15,7 @@ import com.badlogic.gdx.physics.box2d.MassData;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-
 import screens.PlayScreen;
-import sprites.Player.State;
 
 public class Bullet extends Sprite{
 	public enum State {

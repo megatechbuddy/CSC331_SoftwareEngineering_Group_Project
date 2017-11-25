@@ -3,8 +3,8 @@
 
 package screens;
 
-import java.io.Console;
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
 import com.badlogic.gdx.Gdx;
@@ -21,7 +21,6 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
 import Tools.B2WorldCreator;
 import Tools.WorldContactListener;
 import scenes.Hud;
@@ -73,6 +72,10 @@ public class PlayScreen implements Screen {
 
 	// previous inputs
 	boolean previousSpaceState;
+	
+	// control when to create barrels with timers
+	long timeLastBarrelCreated;
+	long futureTimeToCreateBarrels;
 
 	public PlayScreen(AngryDonkeyKongLibGDX game) {
 		this.game = game;
@@ -118,6 +121,8 @@ public class PlayScreen implements Screen {
 		previousSpaceState = false;
 
 		world.setContactListener(new WorldContactListener());
+		timeLastBarrelCreated = 0;
+		futureTimeToCreateBarrels = 1000;
 	}
 
 	@Override
@@ -168,9 +173,6 @@ public class PlayScreen implements Screen {
 			// fire gun
 			player.setStateFireGun();
 			// System.out.println("firing gun now");
-
-			//add more barrels
-			barrelList.add(new Barrel(this));
 			
 			// bullet
 			bulletList.add(new Bullet(this, player.getPositionX(), player.getPositionY()));
@@ -242,6 +244,9 @@ public class PlayScreen implements Screen {
 
 		world.step(1 / 60f, 6, 2);
 		player.update(dt);
+		
+		updateCreateBarrels();
+		
 		for (Barrel barrel : barrelList) {
 			barrel.update(dt);
 		}
@@ -254,6 +259,18 @@ public class PlayScreen implements Screen {
 		hud.update(dt);
 		gamecam.update();
 		renderer.setView(gamecam);
+	}
+
+	private void updateCreateBarrels() {
+		long timeElapsed = System.currentTimeMillis() - timeLastBarrelCreated;
+		if(timeElapsed >= futureTimeToCreateBarrels) {
+			//add more barrels
+			barrelList.add(new Barrel(this));
+			timeLastBarrelCreated = System.currentTimeMillis();
+			Random random = new Random();
+			//generate new random millisecond sprawn time between 500ms and 1000ms
+			futureTimeToCreateBarrels = 500 + random.nextInt(1000);
+		}
 	}
 
 	@Override
