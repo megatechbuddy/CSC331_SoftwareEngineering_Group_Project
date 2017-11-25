@@ -37,6 +37,7 @@ public class Barrel extends Sprite{
 
 	private boolean startExplosion;
 	public static int speed = 20;
+	private boolean barrelMotionState;
 
 	public Barrel(PlayScreen screen) {
 		super(screen.getAtlas().findRegion("Barrel_A"));
@@ -48,6 +49,7 @@ public class Barrel extends Sprite{
 		previousState = State.STILL;
 		stateTimer = 0;
 		runningRight = true;
+		barrelMotionState = true;
 
 		// setters
 		startExplosion = false;
@@ -165,4 +167,13 @@ public class Barrel extends Sprite{
 		fDef.shape = shape;
 		b2body.createFixture(fDef).setUserData(this);
 	}
+	
+	public void setBarrelMotionState(boolean input) {
+		barrelMotionState = input;
+	}
+	
+	public boolean getBarrelMotionState() {
+		return barrelMotionState;
+	}
+	
 }

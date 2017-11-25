@@ -33,6 +33,7 @@ public class Player extends Sprite{
 	private TextureRegion playerStand;
 	private Animation<TextureRegion> playerFireGun;
 	private boolean runningRight;
+	private boolean ladderCollision;
 	private float stateTimer;
 	public World world;
 	public Body b2body;
@@ -41,6 +42,7 @@ public class Player extends Sprite{
 	private boolean jumping;
 
 	public static int speed = 10;
+	private FixtureDef fDef = new FixtureDef();
 
 	public Player(PlayScreen screen) {
 		super(screen.getAtlas().findRegion("Running_a"));
@@ -55,6 +57,7 @@ public class Player extends Sprite{
 		// setters
 		fireGun = false;
 		jumping = false;
+		ladderCollision = false;
 
 		// Running frames
 		Array<TextureRegion> frames = new Array<TextureRegion>();
@@ -192,13 +195,34 @@ public class Player extends Sprite{
 		jumping = choice;
 	}
 
+	public void ladderCollision(boolean input) {
+		ladderCollision = input;
+//		if(!ladderCollision) {
+//			fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
+//					AngryDonkeyKongLibGDX.BARREL_BIT | 
+//					AngryDonkeyKongLibGDX.PLAYER_BIT|
+//					AngryDonkeyKongLibGDX.KONG_BIT|
+//					AngryDonkeyKongLibGDX.PRINCESS_BIT|
+//					AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
+//		}else{
+//			fDef.filter.maskBits = AngryDonkeyKongLibGDX.BARREL_BIT | 
+//					AngryDonkeyKongLibGDX.PLAYER_BIT|
+//					AngryDonkeyKongLibGDX.KONG_BIT|
+//					AngryDonkeyKongLibGDX.PRINCESS_BIT|
+//					AngryDonkeyKongLibGDX.ATEAMMAN_BIT;			
+//		}
+	}
+	
+	public boolean getLadderCollisionState() {
+		return ladderCollision;
+	}
+	
 	public void defineSprite() {
 		BodyDef bdef = new BodyDef();
 		bdef.position.set(50 / AngryDonkeyKongLibGDX.PPM, 50 / AngryDonkeyKongLibGDX.PPM);
 		bdef.type = BodyDef.BodyType.DynamicBody;
 		b2body = world.createBody(bdef);
 
-		FixtureDef fDef = new FixtureDef();
 
         CircleShape shape = new CircleShape();
         shape.setRadius(13 / AngryDonkeyKongLibGDX.PPM);
@@ -207,21 +231,31 @@ public class Player extends Sprite{
 		
 
 		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.PLAYER_BIT;
-		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
-				AngryDonkeyKongLibGDX.BARREL_BIT | 
-				AngryDonkeyKongLibGDX.PLAYER_BIT|
-				AngryDonkeyKongLibGDX.KONG_BIT|
-				AngryDonkeyKongLibGDX.PRINCESS_BIT|
-				AngryDonkeyKongLibGDX.ATEAMMAN_BIT|
-				AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
+		if(!ladderCollision) {
+			fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
+					AngryDonkeyKongLibGDX.BARREL_BIT | 
+					AngryDonkeyKongLibGDX.PLAYER_BIT|
+					AngryDonkeyKongLibGDX.KONG_BIT|
+					AngryDonkeyKongLibGDX.PRINCESS_BIT|
+					AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
+		}else{
+			fDef.filter.maskBits = AngryDonkeyKongLibGDX.BARREL_BIT | 
+					AngryDonkeyKongLibGDX.PLAYER_BIT|
+					AngryDonkeyKongLibGDX.KONG_BIT|
+					AngryDonkeyKongLibGDX.PRINCESS_BIT|
+					AngryDonkeyKongLibGDX.ATEAMMAN_BIT;			
+		}
 		b2body.createFixture(fDef).setUserData(this);
-	
-//		EdgeShape head = new EdgeShape();
-//		head.set(new Vector2(-2 / AngryDonkeyKongLibGDX.PPM, 9/AngryDonkeyKongLibGDX.PPM), new Vector2(2 / AngryDonkeyKongLibGDX.PPM, 9/AngryDonkeyKongLibGDX.PPM));
-//		fDef.shape = head;
-//		fDef.isSensor = true;
-//		
-//		b2body.createFixture(fDef).setUserData("head");
+		
+		//head sensor
+		EdgeShape head = new EdgeShape();
+		head.set(new Vector2(-2 / AngryDonkeyKongLibGDX.PPM, 9/AngryDonkeyKongLibGDX.PPM), new Vector2(2 / AngryDonkeyKongLibGDX.PPM, 9/AngryDonkeyKongLibGDX.PPM));
+		fDef.shape = head;
+		fDef.isSensor = true;
+		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.PLAYER_BIT;
+		fDef.filter.maskBits = AngryDonkeyKongLibGDX.LADDER_BIT; 
+		b2body.createFixture(fDef).setUserData(this);
+		
 		
 		// Shape is the only disposable of the lot, so get rid of it
 		shape.dispose();

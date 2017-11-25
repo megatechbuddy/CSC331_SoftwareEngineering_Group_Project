@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 import scenes.Hud;
 import sprites.Barrel;
+import sprites.Player;
 
 public class WorldContactListener implements ContactListener {
 
@@ -46,15 +47,23 @@ public class WorldContactListener implements ContactListener {
 			} else if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.PRINCESS_BIT) {
 				Gdx.app.log("Player", " collided with Princess");
 				Hud.addScore(200);
+			} else if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.LADDER_BIT) {
+				Gdx.app.log("Player", " collided with Ladder");
+				((Player) fixA.getUserData()).ladderCollision(true);
+			} else {
+			
 			}
 		}
-
 	}
 
 	@Override
 	public void endContact(Contact contact) {
 		// Gdx.app.log("End Contact", "");
 
+		Fixture fixA = contact.getFixtureA();
+		if(fixA.getFilterData().categoryBits == AngryDonkeyKongLibGDX.PLAYER_BIT) {
+			((Player) fixA.getUserData()).ladderCollision(false);		
+		}
 	}
 
 	@Override
