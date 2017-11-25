@@ -3,6 +3,7 @@
 
 package screens;
 
+import java.io.Console;
 import java.util.ArrayList;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
@@ -62,7 +63,7 @@ public class PlayScreen implements Screen {
 	private ArrayList<Barrel> barrelList;
 	private Kong kong;
 	private Princess princess;
-	private Bullet bullet;
+	private ArrayList<Bullet> bulletList;
 
 	// private ATeamMan ateamman;
 
@@ -107,7 +108,10 @@ public class PlayScreen implements Screen {
 		// barrel = new Barrel(this);
 		kong = new Kong(this);
 		princess = new Princess(this);
-		bullet = new Bullet(this);
+		bulletList = new ArrayList<Bullet>();
+//		bulletList.add(new Bullet(this, player.getPositionX(), player.getPositionY()));
+//		System.out.println("x: " + player.getPositionX() + " y: " + player.getPositionY());
+		
 		// ateamman = new ATeamMan(this);
 
 		// initialize variables
@@ -169,7 +173,12 @@ public class PlayScreen implements Screen {
 			barrelList.add(new Barrel(this));
 			
 			// bullet
-			bullet.b2body.setLinearVelocity(100, 0);
+			bulletList.add(new Bullet(this, player.getPositionX(), player.getPositionY()));
+			if(player.getIsRunningRight()) {
+				bulletList.get(bulletList.size()-1).b2body.setLinearVelocity(600, 20);				
+			} else {
+				bulletList.get(bulletList.size()-1).b2body.setLinearVelocity(-600, 20);
+			}
 
 			// update the state recording variable
 			previousSpaceState = true;
@@ -238,7 +247,9 @@ public class PlayScreen implements Screen {
 		}
 		kong.update(dt);
 		princess.update(dt);
-		bullet.update(dt);
+		for(Bullet bullet: bulletList) {
+			bullet.update(dt);
+		}
 		// ateamman.update(dt);
 		hud.update(dt);
 		gamecam.update();
@@ -268,7 +279,9 @@ public class PlayScreen implements Screen {
 		}
 		kong.draw(game.batch);
 		princess.draw(game.batch);
-		bullet.draw(game.batch);
+		for(Bullet bullet: bulletList) {
+			bullet.draw(game.batch);
+		}
 		// ateamman.draw(game.batch);
 		game.batch.end();
 

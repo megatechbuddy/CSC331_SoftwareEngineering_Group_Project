@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.MassData;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
@@ -38,7 +39,10 @@ public class Bullet extends Sprite{
 	private boolean bulletHit;
 	public static int speed = 20;
 
-	public Bullet(PlayScreen screen) {
+	private float x;
+	private float y;
+	
+	public Bullet(PlayScreen screen, float inputXLocation, float inputYLocation) {
 		super(screen.getAtlas().findRegion("Bullet"));
 		this.world = screen.getWorld();
 
@@ -47,6 +51,8 @@ public class Bullet extends Sprite{
 		previousState = State.STILL;
 		stateTimer = 0;
 		runningRight = true;
+		this.x = inputXLocation;
+		this.y = inputYLocation;
 
 		// setters
 		bulletFired = false;
@@ -72,7 +78,7 @@ public class Bullet extends Sprite{
 		setBounds(0, 0, 4 / AngryDonkeyKongLibGDX.PPM, 1 / AngryDonkeyKongLibGDX.PPM);
 		setRegion(playerStand);
 		
-		
+		MassData mass = new MassData();
 	}
 
 	public void update(float dt) {
@@ -140,7 +146,7 @@ public class Bullet extends Sprite{
 	
 	public void defineSprite() {
 		BodyDef bdef = new BodyDef();
-		Vector2 start_position = new Vector2(5, 5);
+		Vector2 start_position = new Vector2(x, y);
 		bdef.type = BodyDef.BodyType.DynamicBody;
 		bdef.position.set(start_position);
 		b2body = world.createBody(bdef);
