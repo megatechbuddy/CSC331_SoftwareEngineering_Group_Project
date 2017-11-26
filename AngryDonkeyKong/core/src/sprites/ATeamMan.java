@@ -131,7 +131,6 @@ public class ATeamMan extends Sprite {
 		shape2.dispose();
 	}
 	
-	
 	/**
 	 * This function updates the current status of the ATeamMan.
 	 * @return
