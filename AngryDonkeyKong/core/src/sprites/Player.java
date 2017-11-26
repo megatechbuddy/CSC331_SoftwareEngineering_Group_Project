@@ -21,8 +21,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
 import screens.PlayScreen;
+import sprites.tileObjects.Ladder_Ground;
 
-public class Player extends Sprite{
+public class Player extends Sprite {
 	public enum State {
 		FALLING, JUMPING, STANDING, RUNNING, FIRING_GUN
 	};
@@ -33,6 +34,7 @@ public class Player extends Sprite{
 	private TextureRegion playerStand;
 	private Animation<TextureRegion> playerFireGun;
 	private boolean runningRight;
+	private boolean ladderCollision;
 	private float stateTimer;
 	public World world;
 	public Body b2body;
@@ -41,6 +43,7 @@ public class Player extends Sprite{
 	private boolean jumping;
 
 	public static int speed = 10;
+	private FixtureDef fDef = new FixtureDef();
 
 	public Player(PlayScreen screen) {
 		super(screen.getAtlas().findRegion("Running_a"));
@@ -55,6 +58,7 @@ public class Player extends Sprite{
 		// setters
 		fireGun = false;
 		jumping = false;
+		ladderCollision = false;
 
 		// Running frames
 		Array<TextureRegion> frames = new Array<TextureRegion>();
@@ -94,7 +98,7 @@ public class Player extends Sprite{
 
 		// show picture
 		defineSprite();
-		setBounds(0, 0, 16 / AngryDonkeyKongLibGDX.PPM, 16 / AngryDonkeyKongLibGDX.PPM);
+		setBounds(0, 0, 32 / AngryDonkeyKongLibGDX.PPM, 32 / AngryDonkeyKongLibGDX.PPM);
 		setRegion(playerStand);
 	}
 
@@ -103,42 +107,50 @@ public class Player extends Sprite{
 		setRegion(getFrame(dt));
 	}
 
+	public float getPositionX() {
+		return b2body.getPosition().x;// - getWidth() / 2;
+	}
+
+	public float getPositionY() {
+		return b2body.getPosition().y;// - getHeight() / 2;
+	}
+
 	public TextureRegion getFrame(float dt) {
 		currentState = getState();
 
 		TextureRegion region;
 		switch (currentState) {
-			case JUMPING:
-				//region = playerJump.getKeyFrame(stateTimer);
-				// break;
-				region = playerStand;
-				break;
-			case RUNNING:
-				//System.out.println("running");
-				region = playerRun.getKeyFrame(stateTimer, true);			
-				break;
-				
-			case FIRING_GUN:
-				// debugging
-				//System.out.println("gun");
-				region = playerFireGun.getKeyFrame(stateTimer);
-				if(playerFireGun.isAnimationFinished(stateTimer)) {
-					fireGun = false;
-				}
-				break;
-//			case FALLING:
-//				region = playerStand;	
-//				break;
-//			case STANDING:
-//				region = playerStand;	
-//				break;
-			default:
-				//System.out.println("stand");
-				currentState = State.STANDING;
-				region = playerStand;
-				break;
+		case JUMPING:
+			// region = playerJump.getKeyFrame(stateTimer);
+			// break;
+			region = playerStand;
+			break;
+		case RUNNING:
+			// System.out.println("running");
+			region = playerRun.getKeyFrame(stateTimer, true);
+			break;
+
+		case FIRING_GUN:
+			// debugging
+			// System.out.println("gun");
+			region = playerFireGun.getKeyFrame(stateTimer);
+			if (playerFireGun.isAnimationFinished(stateTimer)) {
+				fireGun = false;
+			}
+			break;
+		// case FALLING:
+		// region = playerStand;
+		// break;
+		// case STANDING:
+		// region = playerStand;
+		// break;
+		default:
+			// System.out.println("stand");
+			currentState = State.STANDING;
+			region = playerStand;
+			break;
 		}
-		
+
 		if (!runningRight && !region.isFlipX()) {
 			region.flip(true, false);
 			runningRight = false;
@@ -159,23 +171,27 @@ public class Player extends Sprite{
 		this.runningRight = false;
 	}
 
+	public boolean getIsRunningRight() {
+		return this.runningRight;
+	}
+
 	public State getState() {
 		if (fireGun) {
-			//System.out.println("gun");
+			// System.out.println("gun");
 			return State.FIRING_GUN;
-//		} else if (b2body.getLinearVelocity().y > 0
-//				|| (b2body.getLinearVelocity().y < 0 && previousState == State.JUMPING)) {
-//			return State.JUMPING;
+			// } else if (b2body.getLinearVelocity().y > 0
+			// || (b2body.getLinearVelocity().y < 0 && previousState == State.JUMPING)) {
+			// return State.JUMPING;
 		} else if (b2body.getLinearVelocity().y < -0.1 && jumping == false) {
-			System.out.println("State: Falling, y velocity: " + b2body.getLinearVelocity().y);
+			// System.out.println("State: Falling, y velocity: " +
+			// b2body.getLinearVelocity().y);
 			return State.FALLING;
 		} else if (b2body.getLinearVelocity().x != 0 && jumping == false) {
-		//	System.out.println("running");
+			// System.out.println("running");
 			return State.RUNNING;
 		} else if (jumping) {
 			return State.JUMPING;
-		}
-		else {
+		} else {
 			return State.STANDING;
 		}
 	}
@@ -187,9 +203,22 @@ public class Player extends Sprite{
 		// if(inputFiringState)
 		// System.out.println("GunFired " + inputFiringState);
 	}
-	
+
 	public void setStateJumping(boolean choice) {
 		jumping = choice;
+	}
+
+	public void ladderCollision(boolean input) {
+		ladderCollision = input;
+		if (ladderCollision) {
+
+		} else {
+
+		}
+	}
+
+	public boolean getLadderCollisionState() {
+		return ladderCollision;
 	}
 
 	public void defineSprite() {
@@ -198,30 +227,28 @@ public class Player extends Sprite{
 		bdef.type = BodyDef.BodyType.DynamicBody;
 		b2body = world.createBody(bdef);
 
-		FixtureDef fDef = new FixtureDef();
-
-        CircleShape shape = new CircleShape();
-        shape.setRadius(6 / AngryDonkeyKongLibGDX.PPM);
+		CircleShape shape = new CircleShape();
+		shape.setRadius(13 / AngryDonkeyKongLibGDX.PPM);
 		fDef.shape = shape;
 		fDef.density = 1f;
-		
 
 		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.PLAYER_BIT;
-		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
-				AngryDonkeyKongLibGDX.BARREL_BIT | 
-				AngryDonkeyKongLibGDX.PLAYER_BIT|
-				AngryDonkeyKongLibGDX.KONG_BIT|
-				AngryDonkeyKongLibGDX.PRINCESS_BIT|
-				AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
+
+		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | AngryDonkeyKongLibGDX.BARREL_BIT
+				| AngryDonkeyKongLibGDX.PLAYER_BIT | AngryDonkeyKongLibGDX.KONG_BIT | AngryDonkeyKongLibGDX.PRINCESS_BIT
+				| AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
 		b2body.createFixture(fDef).setUserData(this);
-	
-//		EdgeShape head = new EdgeShape();
-//		head.set(new Vector2(-2 / AngryDonkeyKongLibGDX.PPM, 9/AngryDonkeyKongLibGDX.PPM), new Vector2(2 / AngryDonkeyKongLibGDX.PPM, 9/AngryDonkeyKongLibGDX.PPM));
-//		fDef.shape = head;
-//		fDef.isSensor = true;
-//		
-//		b2body.createFixture(fDef).setUserData("head");
-		
+
+		// head sensor
+		EdgeShape head = new EdgeShape();
+		head.set(new Vector2(-2 / AngryDonkeyKongLibGDX.PPM, 9 / AngryDonkeyKongLibGDX.PPM),
+				new Vector2(2 / AngryDonkeyKongLibGDX.PPM, 9 / AngryDonkeyKongLibGDX.PPM));
+		fDef.shape = head;
+		fDef.isSensor = true;
+		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.PLAYER_BIT;
+		fDef.filter.maskBits = AngryDonkeyKongLibGDX.LADDER_BIT;
+		b2body.createFixture(fDef).setUserData(this);
+
 		// Shape is the only disposable of the lot, so get rid of it
 		shape.dispose();
 	}

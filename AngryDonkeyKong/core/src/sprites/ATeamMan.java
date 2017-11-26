@@ -1,6 +1,4 @@
 //Author: Minh Hua
-//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
-
 package sprites;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
@@ -22,25 +20,31 @@ import com.badlogic.gdx.utils.Array;
 import screens.PlayScreen;
 import sprites.Player.State;
 
-public class ATeamMan extends Sprite{
+/**
+ * @author Minh Hua - Followed
+ *         https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt
+ *         tutorial and modified things tremendously for our game.
+ */
+public class ATeamMan extends Sprite {
 	public enum State {
 		STILL, ROLLING, EXPLODING
 	};
 
+	// Defines variables
 	public World world;
 	public Body b2body;
 	public State currentState;
 	public State previousState;
-	private Animation<TextureRegion> barrellRoll;
 	private TextureRegion playerStand;
-	private Animation<TextureRegion> barrellExplode;
 	private boolean runningRight;
 	private float stateTimer;
 	private TextureRegion ATeamManStand;
-
-	private boolean startExplosion;
 	public static int speed = 20;
 
+	/**
+	 * @param screen
+	 *            This function renders the ATeamMan onto the playscreen.
+	 */
 	public ATeamMan(PlayScreen screen) {
 		super(screen.getAtlas().findRegion("ateamman sprite"));
 		this.world = screen.getWorld();
@@ -51,65 +55,45 @@ public class ATeamMan extends Sprite{
 		stateTimer = 0;
 		runningRight = true;
 
-		// setters
-		startExplosion = false;
-
-		// Rolling frames
-		Array<TextureRegion> frames = new Array<TextureRegion>();
-		frames.add(screen.getAtlas().findRegion("ateamman sprite"));
-
-		barrellRoll = new Animation(0.1f, frames);
-		frames.clear();
-
-		// StartExplosion Frames
-		frames.add(screen.getAtlas().findRegion("ateamman sprite"));
-
-		barrellExplode = new Animation(0.4f, frames);
-		frames.clear();
-
 		playerStand = new TextureRegion(screen.getAtlas().findRegion("ateamman sprite"));
 
 		// show picture
 		defineSprite();
 		setBounds(0, 0, 16 / AngryDonkeyKongLibGDX.PPM, 16 / AngryDonkeyKongLibGDX.PPM);
 		setRegion(playerStand);
-		
-		
+
 	}
 
+	/**
+	 * 
+	 * @param dt This function positions the ATeamMan on the playscreen.
+	 */
 	public void update(float dt) {
 		setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 		setRegion(getFrame(dt));
 	}
-
+	/**
+	 * 
+	 * @param dt This function renders the texture of the ATeamMan, giving it a sprite.
+	 * @return
+	 */
 	public TextureRegion getFrame(float dt) {
 		currentState = getState();
 
-		TextureRegion region;
+		TextureRegion region = null;
 		switch (currentState) {
-			case STILL:
-				// region = playerJump.getKeyFrame(stateTimer);
-				// break;
-			case ROLLING:
-				//System.out.println("running");
-				region = barrellRoll.getKeyFrame(stateTimer, true);			
-				break;
-				
-			case EXPLODING:
-				// debugging
-				//System.out.println("gun");
-				region = barrellExplode.getKeyFrame(stateTimer);
-				if(barrellExplode.isAnimationFinished(stateTimer)) {
-					startExplosion = false;
-				}
-				break;
-			default:
-				//System.out.println("stand");
-				currentState = State.STILL;
-				region = playerStand;
-				break;
+		case STILL:
+			// region = playerJump.getKeyFrame(stateTimer);
+			// break;
+
+			break;
+		default:
+			// System.out.println("stand");
+			currentState = State.STILL;
+			region = playerStand;
+			break;
 		}
-		
+
 		if (!runningRight && !region.isFlipX()) {
 			region.flip(true, false);
 			runningRight = false;
@@ -121,18 +105,10 @@ public class ATeamMan extends Sprite{
 		previousState = currentState;
 		return region;
 	}
-
-	public State getState() {
-		if (startExplosion) {
-			return State.EXPLODING;
-		} else if (true) {
-			return State.ROLLING;
-		} else {
-			return State.STILL;
-		}
-	}
-
 	
+	/**
+	 * This function shapes the size of the ATeamMan.
+	 */
 	public void defineSprite() {
 		BodyDef bdef = new BodyDef();
 		Vector2 start_position = new Vector2(13, 7);
@@ -147,15 +123,27 @@ public class ATeamMan extends Sprite{
 		fDef.shape = shape2;
 		fDef.density = 1f;
 		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
-		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
-				AngryDonkeyKongLibGDX.BARREL_BIT | 
-				AngryDonkeyKongLibGDX.PLAYER_BIT|
-				AngryDonkeyKongLibGDX.KONG_BIT|
-				AngryDonkeyKongLibGDX.PRINCESS_BIT|
-				AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
-
+		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | AngryDonkeyKongLibGDX.BARREL_BIT
+				| AngryDonkeyKongLibGDX.PLAYER_BIT | AngryDonkeyKongLibGDX.KONG_BIT | AngryDonkeyKongLibGDX.PRINCESS_BIT
+				| AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
 
 		b2body.createFixture(fDef).setUserData(this);
 		shape2.dispose();
 	}
+	
+	
+	/**
+	 * This function updates the current status of the ATeamMan.
+	 * @return
+	 */
+	public State getState() {
+		if (true) {
+			return State.EXPLODING;
+		} else if (true) {
+			return State.ROLLING;
+		} else {
+			return State.STILL;
+		}
+	}
 }
+

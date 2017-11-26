@@ -30,8 +30,8 @@ public abstract class InteractiveTileObject {
 	protected Fixture fixture;
 
 	public InteractiveTileObject(PlayScreen screen, MapObject object) {
-        this.object = object;
-        this.screen = screen;
+		this.object = object;
+		this.screen = screen;
 		this.world = screen.getWorld();
 		this.map = screen.getMap();
 		this.bounds = ((RectangleMapObject) object).getRectangle();
