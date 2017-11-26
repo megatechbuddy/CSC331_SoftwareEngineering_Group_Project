@@ -1,7 +1,3 @@
-//Author: Sean Benson 
-//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
-
-
 package scenes;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
@@ -17,6 +13,10 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+/**
+ * @author Sean Benson - 
+ * Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+ */
 public class Hud implements Disposable{
 	public Stage stage;
 	private Viewport viewport;
@@ -32,7 +32,10 @@ public class Hud implements Disposable{
     private Label levelLabel;
     private Label worldLabel;
     private Label marioLabel;
-	
+
+    /**
+     * Constructor initializes the labels that are displayed on the screen.
+     */
 	public Hud(SpriteBatch sb) {
 		worldTimer = 300;
 		timeCount = 0;
@@ -66,6 +69,9 @@ public class Hud implements Disposable{
 	}
 
 
+    /**
+     * Update the games text.
+     */
     public void update(float dt){
         timeCount += dt;
         if(timeCount >= 1){
@@ -79,8 +85,13 @@ public class Hud implements Disposable{
         }
     }
 
+    /**
+     * Update the games score.
+     */
     public static void addScore(int value){
     	score += value;
+    	
+    	//Make sure the score is strictly positive.
     	if(score < 0) 
     		score = 0;
     		
