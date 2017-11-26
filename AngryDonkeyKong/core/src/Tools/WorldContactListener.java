@@ -1,6 +1,3 @@
-//Author: Sean Benson 
-//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
-
 package Tools;
 
 import javax.swing.JOptionPane;
@@ -18,8 +15,15 @@ import scenes.Hud;
 import sprites.Barrel;
 import sprites.Player;
 
+/**
+ * @author Sean Benson
+ * Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+ */
 public class WorldContactListener implements ContactListener {
-
+	
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.physics.box2d.ContactListener#beginContact(com.badlogic.gdx.physics.box2d.Contact)
+	 */
 	@Override
 	public void beginContact(Contact contact) {
 		// Gdx.app.log("Begin Contact", "");
@@ -64,6 +68,9 @@ public class WorldContactListener implements ContactListener {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.physics.box2d.ContactListener#endContact(com.badlogic.gdx.physics.box2d.Contact)
+	 */
 	@Override
 	public void endContact(Contact contact) {
 		// Gdx.app.log("End Contact", "");
@@ -74,12 +81,18 @@ public class WorldContactListener implements ContactListener {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.physics.box2d.ContactListener#preSolve(com.badlogic.gdx.physics.box2d.Contact, com.badlogic.gdx.physics.box2d.Manifold)
+	 */
 	@Override
 	public void preSolve(Contact contact, Manifold oldManifold) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.physics.box2d.ContactListener#postSolve(com.badlogic.gdx.physics.box2d.Contact, com.badlogic.gdx.physics.box2d.ContactImpulse)
+	 */
 	@Override
 	public void postSolve(Contact contact, ContactImpulse impulse) {
 		// TODO Auto-generated method stub

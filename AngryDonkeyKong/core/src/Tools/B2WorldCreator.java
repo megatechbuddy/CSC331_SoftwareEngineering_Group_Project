@@ -1,5 +1,3 @@
-//Author: Sean Benson 
-//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
 package Tools;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
@@ -12,14 +10,20 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-
 import screens.PlayScreen;
 import sprites.tileObjects.Brick;
 import sprites.tileObjects.Ladder;
 import sprites.tileObjects.Ladder_Ground;
 
+/**
+ * @author Sean Benson
+ * Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+ */
 public class B2WorldCreator {
 
+	/**
+	 * Constructor
+	 */
 	public B2WorldCreator(PlayScreen screen) {
 		World world = screen.getWorld();
 		TiledMap map = screen.getMap();
@@ -60,5 +64,4 @@ public class B2WorldCreator {
 			new Ladder_Ground(screen, object);
 		}
 	}
-
 }

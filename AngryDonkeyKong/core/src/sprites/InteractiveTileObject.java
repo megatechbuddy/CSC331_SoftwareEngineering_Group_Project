@@ -1,12 +1,9 @@
-//Author: Sean Benson 
-//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
 package sprites;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -16,9 +13,12 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-
 import screens.PlayScreen;
 
+/**
+ * @author Sean Benson - 
+ * Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+ */
 public abstract class InteractiveTileObject {
 	protected World world;
 	protected TiledMap map;
@@ -29,6 +29,9 @@ public abstract class InteractiveTileObject {
 
 	protected Fixture fixture;
 
+	/**
+	 * Constructor
+	 */
 	public InteractiveTileObject(PlayScreen screen, MapObject object) {
 		this.object = object;
 		this.screen = screen;
@@ -53,12 +56,18 @@ public abstract class InteractiveTileObject {
 
 	}
 
+	/**
+	 * filters
+	 */
 	public void setCategoryFilter(short filterBit) {
 		Filter filter = new Filter();
 		filter.categoryBits = filterBit;
 		fixture.setFilterData(filter);
 	}
 
+	/**
+	 * @return cells of the map
+	 */
 	public TiledMapTileLayer.Cell getCell() {
 		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(1);
 		return layer.getCell((int) (body.getPosition().x * AngryDonkeyKongLibGDX.PPM / 16),
