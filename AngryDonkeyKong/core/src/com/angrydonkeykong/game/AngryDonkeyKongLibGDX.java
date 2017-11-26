@@ -1,6 +1,3 @@
-//Author: Sean Benson , Minh Hua
-//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
-
 package com.angrydonkeykong.game;
 
 import com.badlogic.gdx.Game;
@@ -9,8 +6,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import screens.PlayScreen;
 
+/**
+ * @author Sean Benson, Minh Hua  - 
+ * Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+ */
 public class AngryDonkeyKongLibGDX extends Game {
+	//start sprites
 	public SpriteBatch batch;
+	
+	//Dimensions of the Screen
 	public static final int V_WIDTH = 608;
 	public static final int V_HEIGHT = 540;
 	public static final float PPM = 10;
@@ -38,10 +42,8 @@ public class AngryDonkeyKongLibGDX extends Game {
 	}
 
 	public Texture batch() {
-		// TODO Auto-generated method stub
 		return batch();
 	}
-	
 
 	@Override
 	public void dispose() {

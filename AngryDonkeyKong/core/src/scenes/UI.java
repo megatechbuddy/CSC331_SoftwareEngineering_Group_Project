@@ -1,6 +1,3 @@
-//Author: Sean Benson 
-//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
-
 package scenes;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
@@ -11,20 +8,27 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+/**
+ * @author Sean Benson - 
+ * Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+ */
 public class UI {
-	public Stage stage;
+	private Stage stage;
 	private Viewport viewport;
 
 	private int worldTimer;
 	private float timeCount;
 	private int score;
 	
-	Label countdownLabel;
-	Label scoreLabel;
-	Label timeLabel;
-	Label levelLabel;
-	Label marioLabel;
+	private Label countdownLabel;
+	private Label scoreLabel;
+	private Label timeLabel;
+	private Label levelLabel;
+	private Label marioLabel;
 	
+	/**
+	 * Constructor that sets up the timer and labels for the game.
+	 */
 	public UI(SpriteBatch sb) {
 		worldTimer = 300;
 		timeCount = 0;

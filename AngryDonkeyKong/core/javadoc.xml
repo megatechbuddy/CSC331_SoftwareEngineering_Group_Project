@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="public" author="true" classpath="C:\Users\seana\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx\1.9.6\47d1e9b890e364ec28f128e9bb3b9a12a94c164\gdx-1.9.6.jar;C:\Users\seana\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-box2d\1.9.6\c249ef4060a4fada952f278455c8f7b9cba3c18a\gdx-box2d-1.9.6.jar" destdir="D:\JAVA\School_Eclipse_Workspace\CSC_331_JavaDocs\v1" doctitle="AngryDonkeyKong Javadoc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="scenes,sprites,com.angrydonkeykong.game,sprites.tileObjects,Tools,screens" source="1.8" sourcepath="src" splitindex="true" use="true" version="true">
+            <link href="file:/D:/JAVA/School_Eclipse_Workspace/CSC_331_JavaDocs/v1/"/>
+        </javadoc>
+    </target>
+</project>

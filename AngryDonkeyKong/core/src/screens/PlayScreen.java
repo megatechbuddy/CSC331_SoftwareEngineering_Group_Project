@@ -1,13 +1,7 @@
-//Author: Sean Benson, Kevin Singleton, Minh Hua
-//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
-
 package screens;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import javax.swing.text.html.parser.Entity;
-
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -32,8 +26,11 @@ import sprites.Kong;
 import sprites.Player;
 import sprites.Player.State;
 import sprites.Princess;
-//import sprites.ATeamMan;
 
+/**
+ * @author Sean Benson, Kevin Singleton, Minh Hua - 
+ * Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+ */
 public class PlayScreen implements Screen {
 	private AngryDonkeyKongLibGDX game;
 
@@ -79,6 +76,9 @@ public class PlayScreen implements Screen {
 	long timeLastBarrelCreated;
 	long futureTimeToCreateBarrels;
 
+	/** Constructor 
+	 * @param game Refers to the Angry Donkey Kong Game
+	 */
 	public PlayScreen(AngryDonkeyKongLibGDX game) {
 		this.game = game;
 
@@ -131,10 +131,10 @@ public class PlayScreen implements Screen {
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub lol
 
 	}
 
+	/**This method handles input from the wasd keys, spacebar, and arrow keys. **/
 	public void handleInput(float dt) {
 
 		// variables for velocity
@@ -215,6 +215,7 @@ public class PlayScreen implements Screen {
 
 	}
 
+	/**This method tells the barrel to move back and forth on the screen. When it hits a side of the game screen it reverses the direction. **/
 	public void moveBarrel() {
 		if (debug_mode)
 			System.out.println("x: " + barrelList.get(0).getX());
@@ -236,9 +237,9 @@ public class PlayScreen implements Screen {
 				barrel.b2body.setLinearVelocity(-20, barrel.b2body.getLinearVelocity().y);
 			}
 		}
-
 	}
 
+	/**This method is called to update the Sprites. **/
 	public void update(float dt) {
 		handleInput(dt);
 

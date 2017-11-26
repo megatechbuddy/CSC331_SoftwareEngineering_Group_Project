@@ -1,6 +1,3 @@
-//Author: Sean Benson & Kevin Singleton
-//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
-
 package sprites;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
@@ -18,6 +15,10 @@ import com.badlogic.gdx.utils.Array;
 import screens.PlayScreen;
 import sprites.Player.State;
 
+/**
+ * @author Sean Benson, Kevin Singleton - 
+ * Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+ */
 public class Barrel extends Sprite {
 	public enum State {
 		STILL, ROLLING, EXPLODING
@@ -33,12 +34,14 @@ public class Barrel extends Sprite {
 	private boolean runningRight;
 	private float stateTimer;
 	private TextureRegion donkeyStand;
-
 	private boolean startExplosion;
 	public static int speed = 20;
 	private boolean barrelMotionState;
 	private boolean barrelDead;
 
+	/**
+	 * Constructor
+	 */
 	public Barrel(PlayScreen screen) {
 		super(screen.getAtlas().findRegion("Barrel_A"));
 		this.world = screen.getWorld();
@@ -85,11 +88,18 @@ public class Barrel extends Sprite {
 
 	}
 
+	/**
+	 * Updates an individual barrel.
+	 */
 	public void update(float dt) {
 		setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 		setRegion(getFrame(dt));
 	}
 
+	
+	/**
+	 * Returns the TextureRegion of an individual frame.
+	 */
 	public TextureRegion getFrame(float dt) {
 		currentState = getState();
 
@@ -132,6 +142,10 @@ public class Barrel extends Sprite {
 		return region;
 	}
 
+	
+	/**
+	 * @return the State of the Barrel. Possible states are: EXPLODING, ROLLING, and STILL.
+	 */
 	public State getState() {
 		if (startExplosion) {
 			return State.EXPLODING;
@@ -142,10 +156,17 @@ public class Barrel extends Sprite {
 		}
 	}
 
+	
+	/**
+	 * This is a setter class that starts the explosion of the barrel.
+	 */
 	public void startExplosion() {
 		startExplosion = true;
 	}
 
+	/**
+	 * This defines the image, dimensions, and contact points of the sprite.
+	 */
 	public void defineSprite() {
 		FixtureDef fDef;
 		BodyDef bdef;
@@ -169,18 +190,31 @@ public class Barrel extends Sprite {
 		b2body.createFixture(fDef).setUserData(this);
 	}
 
+	
+	/**
+	 * @param input True/False to determine whether the barrel is in motion.
+	 */
 	public void setBarrelMotionState(boolean input) {
 		barrelMotionState = input;
 	}
 
+	/**
+	 * @return Returns boolean that represents the state of the barrel, whether it is in motion or not. In motion(true). Not moving(false).
+	 */
 	public boolean getBarrelMotionState() {
 		return barrelMotionState;
 	}
 
+	/**
+	 * This method is called to terminate the barrel.
+	 */
 	public void setBarrelDead() {
 		barrelDead = true;
 	}
 
+	/**
+	 * @return Returns whether the barrel is dead or alive.
+	 */
 	public boolean getBarrelDead() {
 		return barrelDead;
 	}
