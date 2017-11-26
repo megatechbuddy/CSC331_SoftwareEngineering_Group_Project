@@ -50,8 +50,25 @@ public class WorldContactListener implements ContactListener {
 			} else if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.LADDER_BIT) {
 				Gdx.app.log("Player", " collided with Ladder");
 				((Player) fixA.getUserData()).ladderCollision(true);
+			}else if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.BARREL_BIT) {
+				Gdx.app.log("Bullet", " collided with Barrel");
+				((Barrel) fixA.getUserData()).startExplosion();
+				Hud.addScore(500);
 			} else {
 			
+			}
+		}
+
+		if (fixA.getFilterData().categoryBits == AngryDonkeyKongLibGDX.BULLET_BIT
+				|| fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.BULLET_BIT) {
+			if (fixA.getFilterData().categoryBits == AngryDonkeyKongLibGDX.BARREL_BIT) {
+				Gdx.app.log("Bullet", " collided with Barrel");
+				((Barrel) fixA.getUserData()).startExplosion();
+				Hud.addScore(500);
+			}else if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.BARREL_BIT) {
+				Gdx.app.log("Bullet", " collided with Barrel");
+				((Barrel) fixB.getUserData()).startExplosion();
+				Hud.addScore(500);
 			}
 		}
 	}

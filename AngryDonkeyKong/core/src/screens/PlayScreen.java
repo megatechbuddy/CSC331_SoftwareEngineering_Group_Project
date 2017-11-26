@@ -6,6 +6,8 @@ package screens;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.text.html.parser.Entity;
+
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -72,7 +74,7 @@ public class PlayScreen implements Screen {
 
 	// previous inputs
 	boolean previousSpaceState;
-	
+
 	// control when to create barrels with timers
 	long timeLastBarrelCreated;
 	long futureTimeToCreateBarrels;
@@ -112,9 +114,11 @@ public class PlayScreen implements Screen {
 		kong = new Kong(this);
 		princess = new Princess(this);
 		bulletList = new ArrayList<Bullet>();
-//		bulletList.add(new Bullet(this, player.getPositionX(), player.getPositionY()));
-//		System.out.println("x: " + player.getPositionX() + " y: " + player.getPositionY());
-		
+		// bulletList.add(new Bullet(this, player.getPositionX(),
+		// player.getPositionY()));
+		// System.out.println("x: " + player.getPositionX() + " y: " +
+		// player.getPositionY());
+
 		// ateamman = new ATeamMan(this);
 
 		// initialize variables
@@ -146,7 +150,7 @@ public class PlayScreen implements Screen {
 					&& player.getLadderCollisionState() == false) {
 				player.setStateJumping(true);
 				time_startOfJump = System.currentTimeMillis();
-				if(debug_mode)
+				if (debug_mode)
 					System.out.println("Initiating a new jump. Time: " + time_startOfJump);
 			}
 		}
@@ -173,13 +177,13 @@ public class PlayScreen implements Screen {
 			// fire gun
 			player.setStateFireGun();
 			// System.out.println("firing gun now");
-			
+
 			// bullet
 			bulletList.add(new Bullet(this, player.getPositionX(), player.getPositionY()));
-			if(player.getIsRunningRight()) {
-				bulletList.get(bulletList.size()-1).b2body.setLinearVelocity(600, 20);				
+			if (player.getIsRunningRight()) {
+				bulletList.get(bulletList.size() - 1).b2body.setLinearVelocity(600, 20);
 			} else {
-				bulletList.get(bulletList.size()-1).b2body.setLinearVelocity(-600, 20);
+				bulletList.get(bulletList.size() - 1).b2body.setLinearVelocity(-600, 20);
 			}
 
 			// update the state recording variable
@@ -211,7 +215,6 @@ public class PlayScreen implements Screen {
 
 	}
 
-
 	public void moveBarrel() {
 		if (debug_mode)
 			System.out.println("x: " + barrelList.get(0).getX());
@@ -219,7 +222,7 @@ public class PlayScreen implements Screen {
 		// change direction
 		for (Barrel barrel : barrelList) {
 			if (barrel.getX() >= 58) {
-				barrel.setBarrelMotionState(false); 
+				barrel.setBarrelMotionState(false);
 			} else if (barrel.getX() <= 1) {
 				barrel.setBarrelMotionState(true);
 			}
@@ -244,15 +247,20 @@ public class PlayScreen implements Screen {
 
 		world.step(1 / 60f, 6, 2);
 		player.update(dt);
-		
+
 		updateCreateBarrels();
-		
+
 		for (Barrel barrel : barrelList) {
-			barrel.update(dt);
+//			if (!barrel.getBarrelDead()) {
+				barrel.update(dt);
+//			} else {
+////				barrelList.remove(barrel);
+//				// world.destroyBody();
+//			}
 		}
 		kong.update(dt);
 		princess.update(dt);
-		for(Bullet bullet: bulletList) {
+		for (Bullet bullet : bulletList) {
 			bullet.update(dt);
 		}
 		// ateamman.update(dt);
@@ -263,12 +271,12 @@ public class PlayScreen implements Screen {
 
 	private void updateCreateBarrels() {
 		long timeElapsed = System.currentTimeMillis() - timeLastBarrelCreated;
-		if(timeElapsed >= futureTimeToCreateBarrels) {
-			//add more barrels
+		if (timeElapsed >= futureTimeToCreateBarrels) {
+			// add more barrels
 			barrelList.add(new Barrel(this));
 			timeLastBarrelCreated = System.currentTimeMillis();
 			Random random = new Random();
-			//generate new random millisecond sprawn time between 500ms and 1000ms
+			// generate new random millisecond sprawn time between 500ms and 1000ms
 			futureTimeToCreateBarrels = 500 + random.nextInt(1000);
 		}
 	}
@@ -292,11 +300,13 @@ public class PlayScreen implements Screen {
 
 		player.draw(game.batch);
 		for (Barrel barrel : barrelList) {
-			barrel.draw(game.batch);
+			if (!barrel.getBarrelDead()) {
+				barrel.draw(game.batch);
+			}
 		}
 		kong.draw(game.batch);
 		princess.draw(game.batch);
-		for(Bullet bullet: bulletList) {
+		for (Bullet bullet : bulletList) {
 			bullet.draw(game.batch);
 		}
 		// ateamman.draw(game.batch);
@@ -331,7 +341,13 @@ public class PlayScreen implements Screen {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
+		for (Barrel barrel : barrelList) {
+			if (barrel.getBarrelDead()) {
+				game.batch.dispose();
+				barrel.getTexture().dispose();
+			}
+		}
+		
 
 	}
 

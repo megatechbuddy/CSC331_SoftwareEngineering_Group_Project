@@ -242,11 +242,11 @@ public class Player extends Sprite {
 
 		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.PLAYER_BIT;
 		if (!ladderCollision) {
-			fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | AngryDonkeyKongLibGDX.BARREL_BIT
+			fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT |AngryDonkeyKongLibGDX.BARREL_BIT
 					| AngryDonkeyKongLibGDX.PLAYER_BIT | AngryDonkeyKongLibGDX.KONG_BIT
 					| AngryDonkeyKongLibGDX.PRINCESS_BIT | AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
 		} else {
-			fDef.filter.maskBits = AngryDonkeyKongLibGDX.BARREL_BIT | AngryDonkeyKongLibGDX.PLAYER_BIT
+			fDef.filter.maskBits = AngryDonkeyKongLibGDX.PLAYER_BIT |AngryDonkeyKongLibGDX.BARREL_BIT
 					| AngryDonkeyKongLibGDX.KONG_BIT | AngryDonkeyKongLibGDX.PRINCESS_BIT
 					| AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
 		}

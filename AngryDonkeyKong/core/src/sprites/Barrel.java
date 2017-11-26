@@ -38,7 +38,8 @@ public class Barrel extends Sprite{
 	private boolean startExplosion;
 	public static int speed = 20;
 	private boolean barrelMotionState;
-
+	private boolean barrelDead;
+	
 	public Barrel(PlayScreen screen) {
 		super(screen.getAtlas().findRegion("Barrel_A"));
 		this.world = screen.getWorld();
@@ -50,6 +51,7 @@ public class Barrel extends Sprite{
 		stateTimer = 0;
 		runningRight = true;
 		barrelMotionState = true;
+		barrelDead = false;
 
 		// setters
 		startExplosion = false;
@@ -110,6 +112,7 @@ public class Barrel extends Sprite{
 				region = barrellExplode.getKeyFrame(stateTimer);
 				if(barrellExplode.isAnimationFinished(stateTimer)) {
 					startExplosion = false;
+					//setBarrelDead();
 				}
 				break;
 			default:
@@ -146,25 +149,28 @@ public class Barrel extends Sprite{
 	}
 	
 	public void defineSprite() {
-		BodyDef bdef = new BodyDef();
+		FixtureDef fDef;
+		BodyDef bdef;
+	    bdef = new BodyDef();
 		Vector2 start_position = new Vector2(20, 44);
 		bdef.position.set(start_position);
         bdef.type = BodyDef.BodyType.DynamicBody;
 		b2body = world.createBody(bdef);
 
-		FixtureDef fDef = new FixtureDef();
+		fDef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(10 / AngryDonkeyKongLibGDX.PPM);
 		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.BARREL_BIT;
 		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
 				AngryDonkeyKongLibGDX.BARREL_BIT | 
-				AngryDonkeyKongLibGDX.PLAYER_BIT|
 				AngryDonkeyKongLibGDX.KONG_BIT|
 				AngryDonkeyKongLibGDX.PRINCESS_BIT|
-				AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
+				AngryDonkeyKongLibGDX.ATEAMMAN_BIT|
+				AngryDonkeyKongLibGDX.PLAYER_BIT|
+				AngryDonkeyKongLibGDX.BULLET_BIT;
 
-//		b2body.createFixture(fDef).setUserData("barrel");
 		fDef.shape = shape;
+		
 		b2body.createFixture(fDef).setUserData(this);
 	}
 	
@@ -176,4 +182,11 @@ public class Barrel extends Sprite{
 		return barrelMotionState;
 	}
 	
+	public void setBarrelDead() {		
+		barrelDead = true;
+	}
+	
+	public boolean getBarrelDead() {
+		return barrelDead;
+	}
 }
