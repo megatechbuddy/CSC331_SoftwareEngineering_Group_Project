@@ -1,6 +1,3 @@
-//Author: Sean Benson 
-//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
-
 package sprites;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
@@ -17,6 +14,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import screens.PlayScreen;
 
+/**
+ * @author Sean Benson - 
+ * Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+ */
 public class Bullet extends Sprite{
 	public enum State {
 		STILL, MOVING, HIT
@@ -40,6 +41,9 @@ public class Bullet extends Sprite{
 	private float x;
 	private float y;
 	
+	/**
+	 * Constructor for the Bullet
+	 */
 	public Bullet(PlayScreen screen, float inputXLocation, float inputYLocation) {
 		super(screen.getAtlas().findRegion("Bullet"));
 		this.world = screen.getWorld();
@@ -79,11 +83,17 @@ public class Bullet extends Sprite{
 		MassData mass = new MassData();
 	}
 
+	/**
+	 * Updates Bullet
+	 */
 	public void update(float dt) {
 		setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 		setRegion(getFrame(dt));
 	}
 
+	/**
+	 * @return Returns the TextureRegion of Bullet.
+	 */
 	public TextureRegion getFrame(float dt) {
 		currentState = getState();
 
@@ -124,6 +134,9 @@ public class Bullet extends Sprite{
 		return region;
 	}
 
+	/**
+	 * @return Returns the Bullet's state.
+	 */
 	public State getState() {
 		if (bulletFired) {
 			return State.HIT;
@@ -134,14 +147,23 @@ public class Bullet extends Sprite{
 		}
 	}
 	
+	/**
+	 * Change the bullet to fired state.
+	 */
 	public void setStateFireGun() {
 		bulletFired = true;
 	}
 	
+	/**
+	 * Update bullet to hit.
+	 */
 	public void setStateHit() {
 		bulletHit = true;
 	}
 	
+	/**
+	 * Defines the sprite of the bullet.
+	 */
 	public void defineSprite() {
 		BodyDef bdef = new BodyDef();
 		Vector2 start_position = new Vector2(x, y);
