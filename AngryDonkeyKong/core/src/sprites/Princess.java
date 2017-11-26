@@ -1,6 +1,3 @@
-//Author: Sean Benson 
-//Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
-
 package sprites;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
@@ -19,9 +16,13 @@ import com.badlogic.gdx.utils.Array;
 import screens.PlayScreen;
 import sprites.Kong.State;
 
+/**
+ * @author Sean Benson
+ * Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
+ */
 public class Princess extends Sprite {
 	public enum State {
-		STILL, ROLLING, EXPLODING
+		STILL, WALKING, EXPLODING_IN_JOY
 	};
 
 	public World world;
@@ -38,27 +39,30 @@ public class Princess extends Sprite {
 	private boolean startExplosion;
 	public static int speed = 20;
 
+	/**
+	 * Constructor
+	 */
 	public Princess(PlayScreen screen) {
 		super(screen.getAtlas().findRegion("Lady"));
 		this.world = screen.getWorld();
 
-		// change picture animation
+		//change picture animation
 		currentState = State.STILL;
 		previousState = State.STILL;
 		stateTimer = 0;
 		runningRight = true;
 
-		// setters
+		//setters
 		startExplosion = false;
 
-		// Rolling frames
+		//Rolling frames
 		Array<TextureRegion> frames = new Array<TextureRegion>();
 		frames.add(screen.getAtlas().findRegion("Lady"));
 
 		barrellRoll = new Animation(0.1f, frames);
 		frames.clear();
 
-		// StartExplosion Frames
+		//StartExplosion Frames
 		frames.add(screen.getAtlas().findRegion("Lady"));
 
 		barrellExplode = new Animation(0.4f, frames);
@@ -66,32 +70,36 @@ public class Princess extends Sprite {
 
 		playerStand = new TextureRegion(screen.getAtlas().findRegion("Lady"));
 
-		// show picture
+		//show picture
 		defineSprite();
 		setBounds(0, 0, 32 / AngryDonkeyKongLibGDX.PPM, 32 / AngryDonkeyKongLibGDX.PPM);
 		setRegion(playerStand);
-
 	}
 
+	/**
+	 * Updates the Princess
+	 */
 	public void update(float dt) {
 		setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 		setRegion(getFrame(dt));
 	}
 
+	/**
+	 * This updates the Princess's frame.
+	 */
 	public TextureRegion getFrame(float dt) {
 		currentState = getState();
-
 		TextureRegion region;
 		switch (currentState) {
 		case STILL:
 			// region = playerJump.getKeyFrame(stateTimer);
 			// break;
-		case ROLLING:
+		case WALKING:
 			// System.out.println("running");
 			region = barrellRoll.getKeyFrame(stateTimer, true);
 			break;
 
-		case EXPLODING:
+		case EXPLODING_IN_JOY:
 			// debugging
 			// System.out.println("gun");
 			region = barrellExplode.getKeyFrame(stateTimer);
@@ -118,16 +126,22 @@ public class Princess extends Sprite {
 		return region;
 	}
 
+	/**
+	 * @return Gets the state of Princess.
+	 */
 	public State getState() {
 		if (startExplosion) {
-			return State.EXPLODING;
+			return State.EXPLODING_IN_JOY;
 		} else if (true) {
-			return State.ROLLING;
+			return State.WALKING;
 		} else {
 			return State.STILL;
 		}
 	}
 
+	/**
+	 * Defines the box, parameters, and sensors of the sprite.
+	 */
 	public void defineSprite() {
 		BodyDef bdef = new BodyDef();
 		Vector2 start_position = new Vector2(11, 52);
@@ -149,5 +163,4 @@ public class Princess extends Sprite {
 		b2body.createFixture(fDef);
 		shape.dispose();
 	}
-
 }
