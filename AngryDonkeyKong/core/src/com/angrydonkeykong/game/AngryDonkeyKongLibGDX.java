@@ -24,6 +24,7 @@ public class AngryDonkeyKongLibGDX extends Game {
 	public static final short ATEAMMAN_BIT = 32;
 	public static final short BULLET_BIT = 64;
 	public static final short LADDER_BIT = 128;
+	public static final short LADDER_GROUND = 256;
 	
 	@Override
 	public void create () {

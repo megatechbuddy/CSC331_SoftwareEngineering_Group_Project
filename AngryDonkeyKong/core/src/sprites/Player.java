@@ -21,6 +21,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
 import screens.PlayScreen;
+import sprites.tileObjects.Ladder_Ground;
 
 public class Player extends Sprite {
 	public enum State {
@@ -173,7 +174,7 @@ public class Player extends Sprite {
 	public boolean getIsRunningRight() {
 		return this.runningRight;
 	}
-	
+
 	public State getState() {
 		if (fireGun) {
 			// System.out.println("gun");
@@ -209,20 +210,11 @@ public class Player extends Sprite {
 
 	public void ladderCollision(boolean input) {
 		ladderCollision = input;
-		// if(!ladderCollision) {
-		// fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT |
-		// AngryDonkeyKongLibGDX.BARREL_BIT |
-		// AngryDonkeyKongLibGDX.PLAYER_BIT|
-		// AngryDonkeyKongLibGDX.KONG_BIT|
-		// AngryDonkeyKongLibGDX.PRINCESS_BIT|
-		// AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
-		// }else{
-		// fDef.filter.maskBits = AngryDonkeyKongLibGDX.BARREL_BIT |
-		// AngryDonkeyKongLibGDX.PLAYER_BIT|
-		// AngryDonkeyKongLibGDX.KONG_BIT|
-		// AngryDonkeyKongLibGDX.PRINCESS_BIT|
-		// AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
-		// }
+		if (ladderCollision) {
+
+		} else {
+
+		}
 	}
 
 	public boolean getLadderCollisionState() {
@@ -241,15 +233,10 @@ public class Player extends Sprite {
 		fDef.density = 1f;
 
 		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.PLAYER_BIT;
-		if (!ladderCollision) {
-			fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT |AngryDonkeyKongLibGDX.BARREL_BIT
-					| AngryDonkeyKongLibGDX.PLAYER_BIT | AngryDonkeyKongLibGDX.KONG_BIT
-					| AngryDonkeyKongLibGDX.PRINCESS_BIT | AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
-		} else {
-			fDef.filter.maskBits = AngryDonkeyKongLibGDX.PLAYER_BIT |AngryDonkeyKongLibGDX.BARREL_BIT
-					| AngryDonkeyKongLibGDX.KONG_BIT | AngryDonkeyKongLibGDX.PRINCESS_BIT
-					| AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
-		}
+
+		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | AngryDonkeyKongLibGDX.BARREL_BIT
+				| AngryDonkeyKongLibGDX.PLAYER_BIT | AngryDonkeyKongLibGDX.KONG_BIT | AngryDonkeyKongLibGDX.PRINCESS_BIT
+				| AngryDonkeyKongLibGDX.ATEAMMAN_BIT;
 		b2body.createFixture(fDef).setUserData(this);
 
 		// head sensor

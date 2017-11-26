@@ -251,12 +251,12 @@ public class PlayScreen implements Screen {
 		updateCreateBarrels();
 
 		for (Barrel barrel : barrelList) {
-//			if (!barrel.getBarrelDead()) {
-				barrel.update(dt);
-//			} else {
-////				barrelList.remove(barrel);
-//				// world.destroyBody();
-//			}
+			// if (!barrel.getBarrelDead()) {
+			barrel.update(dt);
+			// } else {
+			//// barrelList.remove(barrel);
+			// // world.destroyBody();
+			// }
 		}
 		kong.update(dt);
 		princess.update(dt);
@@ -323,19 +323,16 @@ public class PlayScreen implements Screen {
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -347,8 +344,6 @@ public class PlayScreen implements Screen {
 				barrel.getTexture().dispose();
 			}
 		}
-		
-
 	}
 
 	public TextureAtlas getAtlas() {

@@ -18,11 +18,10 @@ import com.badlogic.gdx.utils.Array;
 import screens.PlayScreen;
 import sprites.Player.State;
 
-public class Barrel extends Sprite{
+public class Barrel extends Sprite {
 	public enum State {
 		STILL, ROLLING, EXPLODING
 	}
-
 
 	public World world;
 	public Body b2body;
@@ -39,11 +38,10 @@ public class Barrel extends Sprite{
 	public static int speed = 20;
 	private boolean barrelMotionState;
 	private boolean barrelDead;
-	
+
 	public Barrel(PlayScreen screen) {
 		super(screen.getAtlas().findRegion("Barrel_A"));
 		this.world = screen.getWorld();
-		
 
 		// change picture animation
 		currentState = State.STILL;
@@ -84,8 +82,7 @@ public class Barrel extends Sprite{
 		defineSprite();
 		setBounds(0, 0, 25 / AngryDonkeyKongLibGDX.PPM, 25 / AngryDonkeyKongLibGDX.PPM);
 		setRegion(playerStand);
-		
-		
+
 	}
 
 	public void update(float dt) {
@@ -98,30 +95,31 @@ public class Barrel extends Sprite{
 
 		TextureRegion region;
 		switch (currentState) {
-			case STILL:
-				// region = playerJump.getKeyFrame(stateTimer);
-				// break;
-			case ROLLING:
-				//System.out.println("running");
-				region = barrellRoll.getKeyFrame(stateTimer, true);			
-				break;
-				
-			case EXPLODING:
-				// debugging
-				//System.out.println("gun");
-				region = barrellExplode.getKeyFrame(stateTimer);
-				if(barrellExplode.isAnimationFinished(stateTimer)) {
-					startExplosion = false;
-					//setBarrelDead();
-				}
-				break;
-			default:
-				//System.out.println("stand");
-				currentState = State.STILL;
-				region = playerStand;
-				break;
+		case STILL:
+			// region = playerJump.getKeyFrame(stateTimer);
+			// break;
+		case ROLLING:
+			// System.out.println("running");
+			region = barrellRoll.getKeyFrame(stateTimer, true);
+			break;
+
+		case EXPLODING:
+			// debugging
+			// System.out.println("gun");
+			region = barrellExplode.getKeyFrame(stateTimer);
+			if (barrellExplode.isAnimationFinished(stateTimer)) {
+				startExplosion = false;
+				// setBarrelDead();
+				// world.destroyBody(b2body);
+			}
+			break;
+		default:
+			// System.out.println("stand");
+			currentState = State.STILL;
+			region = playerStand;
+			break;
 		}
-		
+
 		if (!runningRight && !region.isFlipX()) {
 			region.flip(true, false);
 			runningRight = false;
@@ -147,45 +145,42 @@ public class Barrel extends Sprite{
 	public void startExplosion() {
 		startExplosion = true;
 	}
-	
+
 	public void defineSprite() {
 		FixtureDef fDef;
 		BodyDef bdef;
-	    bdef = new BodyDef();
+		bdef = new BodyDef();
 		Vector2 start_position = new Vector2(20, 44);
 		bdef.position.set(start_position);
-        bdef.type = BodyDef.BodyType.DynamicBody;
+		bdef.type = BodyDef.BodyType.DynamicBody;
 		b2body = world.createBody(bdef);
 
 		fDef = new FixtureDef();
-        CircleShape shape = new CircleShape();
-        shape.setRadius(10 / AngryDonkeyKongLibGDX.PPM);
+		CircleShape shape = new CircleShape();
+		shape.setRadius(10 / AngryDonkeyKongLibGDX.PPM);
 		fDef.filter.categoryBits = AngryDonkeyKongLibGDX.BARREL_BIT;
-		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | 
-				AngryDonkeyKongLibGDX.BARREL_BIT | 
-				AngryDonkeyKongLibGDX.KONG_BIT|
-				AngryDonkeyKongLibGDX.PRINCESS_BIT|
-				AngryDonkeyKongLibGDX.ATEAMMAN_BIT|
-				AngryDonkeyKongLibGDX.PLAYER_BIT|
-				AngryDonkeyKongLibGDX.BULLET_BIT;
+		fDef.filter.maskBits = AngryDonkeyKongLibGDX.BRICK_BIT | AngryDonkeyKongLibGDX.BARREL_BIT
+				| AngryDonkeyKongLibGDX.KONG_BIT | AngryDonkeyKongLibGDX.PRINCESS_BIT
+				| AngryDonkeyKongLibGDX.ATEAMMAN_BIT | AngryDonkeyKongLibGDX.PLAYER_BIT
+				| AngryDonkeyKongLibGDX.LADDER_GROUND | AngryDonkeyKongLibGDX.BULLET_BIT;
 
 		fDef.shape = shape;
-		
+
 		b2body.createFixture(fDef).setUserData(this);
 	}
-	
+
 	public void setBarrelMotionState(boolean input) {
 		barrelMotionState = input;
 	}
-	
+
 	public boolean getBarrelMotionState() {
 		return barrelMotionState;
 	}
-	
-	public void setBarrelDead() {		
+
+	public void setBarrelDead() {
 		barrelDead = true;
 	}
-	
+
 	public boolean getBarrelDead() {
 		return barrelDead;
 	}
