@@ -52,7 +52,13 @@ public class Kong extends Sprite{
 
 		// Rolling frames
 		Array<TextureRegion> frames = new Array<TextureRegion>();
-		frames.add(screen.getAtlas().findRegion("KongFront"));
+		frames.add(screen.getAtlas().findRegion("1"));
+		frames.add(screen.getAtlas().findRegion("2"));
+		frames.add(screen.getAtlas().findRegion("3"));
+		frames.add(screen.getAtlas().findRegion("4"));
+		frames.add(screen.getAtlas().findRegion("5"));
+		frames.add(screen.getAtlas().findRegion("6"));
+		frames.add(screen.getAtlas().findRegion("7"));
 
 		barrellRoll = new Animation<TextureRegion>(0.1f, frames);
 		frames.clear();

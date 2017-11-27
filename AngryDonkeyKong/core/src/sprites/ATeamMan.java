@@ -1,4 +1,3 @@
-//Author: Minh Hua
 package sprites;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
@@ -13,9 +12,11 @@ import com.badlogic.gdx.physics.box2d.World;
 import screens.PlayScreen;
 
 /**
- * @author Minh Hua - Followed
+ * @author Minh Hua, Sean Benson - Followed
  *         https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt
- *         tutorial and modified things tremendously for our game.
+ *         tutorial and modified things tremendously for our game. A-Team Man
+ *         https://i.pinimg.com/474x/89/80/38/89803807a456d60137d933aafdffbe60.jpg
+ *         http://triosdevelopers.com/jason.eckert/blog/Entries/2016/7/9_Entry_1_files/droppedImage.jpg
  */
 public class ATeamMan extends Sprite {
 	public enum State {
@@ -50,22 +51,26 @@ public class ATeamMan extends Sprite {
 
 		// show picture
 		defineSprite();
-		setBounds(0, 0, 16 / AngryDonkeyKongLibGDX.PPM, 16 / AngryDonkeyKongLibGDX.PPM);
+		setBounds(0, 0, 32 / AngryDonkeyKongLibGDX.PPM, 32 / AngryDonkeyKongLibGDX.PPM);
 		setRegion(playerStand);
 
 	}
 
 	/**
 	 * 
-	 * @param dt This function positions the ATeamMan on the playscreen.
+	 * @param dt
+	 *            This function positions the ATeamMan on the playscreen.
 	 */
 	public void update(float dt) {
 		setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 		setRegion(getFrame(dt));
 	}
+
 	/**
 	 * 
-	 * @param dt This function renders the texture of the ATeamMan, giving it a sprite.
+	 * @param dt
+	 *            This function renders the texture of the ATeamMan, giving it a
+	 *            sprite.
 	 * @return
 	 */
 	public TextureRegion getFrame(float dt) {
@@ -96,13 +101,13 @@ public class ATeamMan extends Sprite {
 		previousState = currentState;
 		return region;
 	}
-	
+
 	/**
 	 * This function shapes the size of the ATeamMan.
 	 */
 	public void defineSprite() {
 		BodyDef bdef = new BodyDef();
-		Vector2 start_position = new Vector2(13, 7);
+		Vector2 start_position = new Vector2(45, 50);
 		bdef.position.set(start_position);
 		b2body = world.createBody(bdef);
 
@@ -121,13 +126,13 @@ public class ATeamMan extends Sprite {
 		b2body.createFixture(fDef).setUserData(this);
 		shape2.dispose();
 	}
-	
+
 	/**
 	 * This function updates the current status of the ATeamMan.
+	 * 
 	 * @return
 	 */
 	public State getState() {
 		return State.EXPLODING;
 	}
 }
-

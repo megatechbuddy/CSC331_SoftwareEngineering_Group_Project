@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import Tools.B2WorldCreator;
 import Tools.WorldContactListener;
 import scenes.Hud;
+import sprites.ATeamMan;
 import sprites.Barrel;
 import sprites.Bullet;
 import sprites.Kong;
@@ -62,8 +63,7 @@ public class PlayScreen implements Screen {
 	private Kong kong;
 	private Princess princess;
 	private ArrayList<Bullet> bulletList;
-
-	// private ATeamMan ateamman;
+	private ATeamMan ateamman;
 
 	// velocities of the player
 	private float player_x_velocity = 0;
@@ -119,7 +119,7 @@ public class PlayScreen implements Screen {
 		// System.out.println("x: " + player.getPositionX() + " y: " +
 		// player.getPositionY());
 
-		// ateamman = new ATeamMan(this);
+		ateamman = new ATeamMan(this);
 
 		// initialize variables
 		previousSpaceState = false;
@@ -264,7 +264,7 @@ public class PlayScreen implements Screen {
 		for (Bullet bullet : bulletList) {
 			bullet.update(dt);
 		}
-		// ateamman.update(dt);
+		ateamman.update(dt);
 		hud.update(dt);
 		gamecam.update();
 		renderer.setView(gamecam);
@@ -310,7 +310,7 @@ public class PlayScreen implements Screen {
 		for (Bullet bullet : bulletList) {
 			bullet.draw(game.batch);
 		}
-		// ateamman.draw(game.batch);
+		ateamman.draw(game.batch);
 		game.batch.end();
 
 		game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
