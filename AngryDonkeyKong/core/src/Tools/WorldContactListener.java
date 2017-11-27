@@ -15,7 +15,7 @@ import sprites.Barrel;
 import sprites.Player;
 
 /**
- * @author Sean Benson
+ * @author Sean Benson , Chuyang Wang
  * Followed https://www.youtube.com/playlist?list=PLZm85UZQLd2SXQzsF-a0-pPF6IWDDdrXt tutorial and modified things tremendously for our game.
  */
 public class WorldContactListener implements ContactListener {
@@ -36,6 +36,7 @@ public class WorldContactListener implements ContactListener {
 				Gdx.app.log("Player", " collided with Barrel");
 				((Barrel) fixB.getUserData()).startExplosion();
 				Hud.addScore(-500);
+				JOptionPane.showMessageDialog(null, "You LOSE!!!!    :(");
 			} else if (fixB.getFilterData().categoryBits == AngryDonkeyKongLibGDX.KONG_BIT) {
 				Gdx.app.log("Player", " collided with AngryDonkeyKong");
 				Hud.addScore(-5000);
