@@ -11,9 +11,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-
 import screens.PlayScreen;
-import sprites.Player.State;
 
 /**
  * @author Sean Benson, Kevin Singleton - 
@@ -33,7 +31,6 @@ public class Barrel extends Sprite {
 	private Animation<TextureRegion> barrellExplode;
 	private boolean runningRight;
 	private float stateTimer;
-	private TextureRegion donkeyStand;
 	private boolean startExplosion;
 	public static int speed = 20;
 	private boolean barrelMotionState;
@@ -68,7 +65,7 @@ public class Barrel extends Sprite {
 		frames.add(screen.getAtlas().findRegion("Barrel_G"));
 		frames.add(screen.getAtlas().findRegion("Barrel_H"));
 
-		barrellRoll = new Animation(0.1f, frames);
+		barrellRoll = new Animation<TextureRegion>(0.1f, frames);
 		frames.clear();
 
 		// StartExplosion Frames
@@ -76,7 +73,7 @@ public class Barrel extends Sprite {
 		frames.add(screen.getAtlas().findRegion("Explosion_b"));
 		frames.add(screen.getAtlas().findRegion("Explosion_c"));
 
-		barrellExplode = new Animation(0.4f, frames);
+		barrellExplode = new Animation<TextureRegion>(0.4f, frames);
 		frames.clear();
 
 		playerStand = new TextureRegion(screen.getAtlas().findRegion("Barrel_A"));
@@ -149,10 +146,8 @@ public class Barrel extends Sprite {
 	public State getState() {
 		if (startExplosion) {
 			return State.EXPLODING;
-		} else if (true) {
-			return State.ROLLING;
 		} else {
-			return State.STILL;
+			return State.ROLLING;
 		}
 	}
 

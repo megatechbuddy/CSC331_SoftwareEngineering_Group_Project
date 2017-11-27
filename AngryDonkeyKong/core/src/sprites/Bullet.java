@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.MassData;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
@@ -32,10 +31,7 @@ public class Bullet extends Sprite{
 	private Animation<TextureRegion> barrellExplode;
 	private boolean runningRight;
 	private float stateTimer;
-	private TextureRegion donkeyStand;
-
 	private boolean bulletFired;
-	private boolean bulletHit;
 	public static int speed = 20;
 
 	private float x;
@@ -58,19 +54,17 @@ public class Bullet extends Sprite{
 
 		// setters
 		bulletFired = false;
-		bulletHit = false;
-
 		// Rolling frames
 		Array<TextureRegion> frames = new Array<TextureRegion>();
 		frames.add(screen.getAtlas().findRegion("Bullet"));
 
-		barrellRoll = new Animation(0.1f, frames);
+		barrellRoll = new Animation<TextureRegion>(0.1f, frames);
 		frames.clear();
 
 		// StartExplosion Frames
 		frames.add(screen.getAtlas().findRegion("Bullet"));
 
-		barrellExplode = new Animation(0.4f, frames);
+		barrellExplode = new Animation<TextureRegion>(0.4f, frames);
 		frames.clear();
 
 		playerStand = new TextureRegion(screen.getAtlas().findRegion("Bullet"));
@@ -79,8 +73,6 @@ public class Bullet extends Sprite{
 		defineSprite();
 		setBounds(0, 0, 4 / AngryDonkeyKongLibGDX.PPM, 1 / AngryDonkeyKongLibGDX.PPM);
 		setRegion(playerStand);
-		
-		MassData mass = new MassData();
 	}
 
 	/**
@@ -140,10 +132,8 @@ public class Bullet extends Sprite{
 	public State getState() {
 		if (bulletFired) {
 			return State.HIT;
-		} else if (true) {
-			return State.MOVING;
 		} else {
-			return State.STILL;
+			return State.MOVING;
 		}
 	}
 	
@@ -158,7 +148,6 @@ public class Bullet extends Sprite{
 	 * Update bullet to hit.
 	 */
 	public void setStateHit() {
-		bulletHit = true;
 	}
 	
 	/**

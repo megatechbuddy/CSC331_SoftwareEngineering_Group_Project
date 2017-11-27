@@ -2,8 +2,6 @@ package sprites.tileObjects;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
 import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.math.Rectangle;
-
 import screens.PlayScreen;
 import sprites.InteractiveTileObject;
 

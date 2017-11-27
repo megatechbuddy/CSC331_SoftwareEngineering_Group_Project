@@ -33,7 +33,6 @@ public class Player extends Sprite {
 	private float stateTimer;
 	public World world;
 	public Body b2body;
-	private TextureRegion donkeyStand;
 	private boolean fireGun;
 	private boolean jumping;
 
@@ -71,7 +70,7 @@ public class Player extends Sprite {
 		frames.add(screen.getAtlas().findRegion("Running_l"));
 		frames.add(screen.getAtlas().findRegion("Running_m"));
 
-		playerRun = new Animation(0.1f, frames);
+		playerRun = new Animation<TextureRegion>(0.1f, frames);
 		frames.clear();
 
 		// FiringGun Frames
@@ -86,7 +85,7 @@ public class Player extends Sprite {
 		frames.add(screen.getAtlas().findRegion("FireGun_g"));
 		frames.add(screen.getAtlas().findRegion("Running_a"));
 
-		playerFireGun = new Animation(0.1f, frames);
+		playerFireGun = new Animation<TextureRegion>(0.1f, frames);
 		frames.clear();
 
 		playerStand = new TextureRegion(screen.getAtlas().findRegion("Running_a"));

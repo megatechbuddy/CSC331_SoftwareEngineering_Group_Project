@@ -31,8 +31,6 @@ public class Kong extends Sprite{
 	private Animation<TextureRegion> barrellExplode;
 	private boolean runningRight;
 	private float stateTimer;
-	private TextureRegion donkeyStand;
-
 	private boolean startExplosion;
 	public static int speed = 20;
 
@@ -56,13 +54,13 @@ public class Kong extends Sprite{
 		Array<TextureRegion> frames = new Array<TextureRegion>();
 		frames.add(screen.getAtlas().findRegion("KongFront"));
 
-		barrellRoll = new Animation(0.1f, frames);
+		barrellRoll = new Animation<TextureRegion>(0.1f, frames);
 		frames.clear();
 
 		// StartExplosion Frames
 		frames.add(screen.getAtlas().findRegion("KongFront"));
 
-		barrellExplode = new Animation(0.4f, frames);
+		barrellExplode = new Animation<TextureRegion>(0.4f, frames);
 		frames.clear();
 
 		playerStand = new TextureRegion(screen.getAtlas().findRegion("KongFront"));
@@ -129,10 +127,8 @@ public class Kong extends Sprite{
 	public State getState() {
 		if (startExplosion) {
 			return State.ANGRY;
-		} else if (true) {
-			return State.WALKING;
 		} else {
-			return State.STILL;
+			return State.WALKING;
 		}
 	}
 	

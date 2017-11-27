@@ -9,12 +9,9 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-
 import screens.PlayScreen;
-import sprites.Kong.State;
 
 /**
  * @author Sean Benson
@@ -34,8 +31,6 @@ public class Princess extends Sprite {
 	private Animation<TextureRegion> barrellExplode;
 	private boolean runningRight;
 	private float stateTimer;
-	private TextureRegion donkeyStand;
-
 	private boolean startExplosion;
 	public static int speed = 20;
 
@@ -59,13 +54,13 @@ public class Princess extends Sprite {
 		Array<TextureRegion> frames = new Array<TextureRegion>();
 		frames.add(screen.getAtlas().findRegion("Lady"));
 
-		barrellRoll = new Animation(0.1f, frames);
+		barrellRoll = new Animation<TextureRegion>(0.1f, frames);
 		frames.clear();
 
 		//StartExplosion Frames
 		frames.add(screen.getAtlas().findRegion("Lady"));
 
-		barrellExplode = new Animation(0.4f, frames);
+		barrellExplode = new Animation<TextureRegion>(0.4f, frames);
 		frames.clear();
 
 		playerStand = new TextureRegion(screen.getAtlas().findRegion("Lady"));
@@ -132,10 +127,8 @@ public class Princess extends Sprite {
 	public State getState() {
 		if (startExplosion) {
 			return State.EXPLODING_IN_JOY;
-		} else if (true) {
-			return State.WALKING;
 		} else {
-			return State.STILL;
+			return State.WALKING;
 		}
 	}
 

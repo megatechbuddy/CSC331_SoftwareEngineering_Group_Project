@@ -2,23 +2,15 @@
 package sprites;
 
 import com.angrydonkeykong.game.AngryDonkeyKongLibGDX;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Array;
-
 import screens.PlayScreen;
-import sprites.Player.State;
 
 /**
  * @author Minh Hua - Followed
@@ -38,7 +30,6 @@ public class ATeamMan extends Sprite {
 	private TextureRegion playerStand;
 	private boolean runningRight;
 	private float stateTimer;
-	private TextureRegion ATeamManStand;
 	public static int speed = 20;
 
 	/**
@@ -136,13 +127,7 @@ public class ATeamMan extends Sprite {
 	 * @return
 	 */
 	public State getState() {
-		if (true) {
-			return State.EXPLODING;
-		} else if (true) {
-			return State.ROLLING;
-		} else {
-			return State.STILL;
-		}
+		return State.EXPLODING;
 	}
 }
 
